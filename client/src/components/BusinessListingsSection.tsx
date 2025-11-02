@@ -1,74 +1,23 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import BusinessListingCard from "./BusinessListingCard";
 import { Button } from "@/components/ui/button";
-import bannerImage from "@assets/generated_images/Business_collaboration_banner_075994b5.png";
-import sapBanner from "@assets/generated_images/SAP_ERP_technology_visualization_5ead2768.png";
-import aiBanner from "@assets/generated_images/AI_and_machine_learning_1e520b42.png";
-import tagSkillsLogo from "@assets/generated_images/TagSkills_EdTech_logo_21a5e2e4.png";
-import invayasLogo from "@assets/generated_images/Invayas_Technologies_logo_7b61a3fd.png";
-
-//todo: remove mock functionality
-const listings = [
-  {
-    banner: bannerImage,
-    logo: tagSkillsLogo,
-    name: "TechVision Academy",
-    category: "EdTech",
-    description: "Advanced SAP training programs with hands-on experience and industry certification preparation.",
-    pricing: "₹5,000/month",
-    featured: true
-  },
-  {
-    banner: sapBanner,
-    logo: invayasLogo,
-    name: "SAP Elite Partners",
-    category: "SAP Partner",
-    description: "Certified SAP consulting firm specializing in S/4HANA migrations and enterprise implementations.",
-    pricing: "₹8,000/month",
-    featured: true
-  },
-  {
-    banner: aiBanner,
-    logo: tagSkillsLogo,
-    name: "SkillBoost Learning",
-    category: "Training",
-    description: "Professional development courses in ERP, cloud computing, and emerging technologies.",
-    pricing: "₹4,000/month"
-  },
-  {
-    banner: bannerImage,
-    logo: invayasLogo,
-    name: "TalentHub Recruitment",
-    category: "Recruitment",
-    description: "Connecting SAP professionals with top technology companies across India and globally.",
-    pricing: "₹6,000/month"
-  },
-  {
-    banner: sapBanner,
-    logo: tagSkillsLogo,
-    name: "Fiori Masters",
-    category: "SAP Partner",
-    description: "Specialized Fiori development and UI/UX consulting for SAP enterprise applications.",
-    pricing: "₹7,000/month"
-  },
-  {
-    banner: aiBanner,
-    logo: invayasLogo,
-    name: "ERP Innovations Lab",
-    category: "Training",
-    description: "Cutting-edge training in SAP BTP, AI integration, and next-generation ERP solutions.",
-    pricing: "₹5,500/month"
-  }
-];
+import type { BusinessListing } from "@shared/schema";
 
 const categories = ["All", "EdTech", "SAP Partner", "Training", "Recruitment"];
 
 export default function BusinessListingsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredListings = selectedCategory === "All"
-    ? listings
-    : listings.filter(listing => listing.category === selectedCategory);
+  const { data: listings, isLoading } = useQuery<BusinessListing[]>({
+    queryKey: ["/api/listings", selectedCategory],
+    queryFn: async () => {
+      const params = selectedCategory !== "All" ? `?category=${selectedCategory}` : "";
+      const res = await fetch(`/api/listings${params}`);
+      if (!res.ok) throw new Error("Failed to fetch listings");
+      return res.json();
+    },
+  });
 
   return (
     <section id="listings" className="py-20 lg:py-32">
@@ -95,11 +44,32 @@ export default function BusinessListingsSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {filteredListings.map((listing, index) => (
-            <BusinessListingCard key={index} {...listing} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="h-96 bg-card rounded-xl animate-pulse" />
+            ))}
+          </div>
+        ) : listings && listings.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {listings.map((listing) => (
+              <BusinessListingCard
+                key={listing.id}
+                banner={listing.banner}
+                logo={listing.logo}
+                name={listing.name}
+                category={listing.category}
+                description={listing.description}
+                pricing={`₹${listing.planId ? '5,000' : '2,000'}/month`}
+                featured={listing.isFeatured}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No listings found in this category.</p>
+          </div>
+        )}
 
         <div className="text-center mt-12">
           <Button size="lg" variant="outline" data-testid="button-view-all-listings">

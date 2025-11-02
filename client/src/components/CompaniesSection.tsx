@@ -1,33 +1,12 @@
+import { useQuery } from "@tanstack/react-query";
 import CompanyCard from "./CompanyCard";
-import tagSkillsLogo from "@assets/generated_images/TagSkills_EdTech_logo_21a5e2e4.png";
-import invayasLogo from "@assets/generated_images/Invayas_Technologies_logo_7b61a3fd.png";
-import frilloryLogo from "@assets/generated_images/Frillory_Design_House_logo_bf8228b5.png";
-
-const companies = [
-  {
-    logo: tagSkillsLogo,
-    name: "TagSkills EdTech",
-    tagline: "Transforming Education Through Technology",
-    description: "Leading EdTech platform providing comprehensive SAP training, professional development courses, and skill enhancement programs for aspiring technology professionals.",
-    website: "#"
-  },
-  {
-    logo: invayasLogo,
-    name: "Invayas Technologies",
-    tagline: "Enterprise Solutions & Innovation",
-    description: "Delivering cutting-edge SAP S/4HANA implementations, enterprise resource planning solutions, and digital transformation consulting services to businesses worldwide.",
-    website: "#"
-  },
-  {
-    logo: frilloryLogo,
-    name: "Frillory Design House",
-    tagline: "Creative Excellence in Digital Design",
-    description: "Premium design studio specializing in brand identity, UI/UX design, and creative solutions for modern businesses seeking distinctive visual presence.",
-    website: "#"
-  }
-];
+import type { Company } from "@shared/schema";
 
 export default function CompaniesSection() {
+  const { data: companies, isLoading } = useQuery<Company[]>({
+    queryKey: ["/api/companies"],
+  });
+
   return (
     <section id="companies" className="py-20 lg:py-32 bg-muted/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -40,11 +19,23 @@ export default function CompaniesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {companies.map((company) => (
-            <CompanyCard key={company.name} {...company} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-80 bg-card rounded-xl animate-pulse" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {companies?.map((company) => (
+              <CompanyCard 
+                key={company.id} 
+                {...company}
+                website={company.website || undefined}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

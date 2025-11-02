@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function ContactForm() {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,10 +18,29 @@ export default function ContactForm() {
     message: ""
   });
 
+  const mutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      return apiRequest("POST", "/api/leads", { ...data, source: "contact_form" });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. We'll get back to you soon.",
+      });
+      setFormData({ name: "", email: "", company: "", message: "" });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", company: "", message: "" });
+    mutation.mutate(formData);
   };
 
   return (
@@ -125,8 +148,14 @@ export default function ContactForm() {
                 />
               </div>
 
-              <Button type="submit" className="w-full" size="lg" data-testid="button-submit-contact">
-                Send Message
+              <Button 
+                type="submit" 
+                className="w-full" 
+                size="lg" 
+                disabled={mutation.isPending}
+                data-testid="button-submit-contact"
+              >
+                {mutation.isPending ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Card>

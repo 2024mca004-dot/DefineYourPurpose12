@@ -1,15 +1,41 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 import { Mail } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Newsletter() {
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
+
+  const mutation = useMutation({
+    mutationFn: async (email: string) => {
+      return apiRequest("POST", "/api/newsletter", { email });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Subscribed!",
+        description: "You'll receive our weekly SAP insights and updates.",
+      });
+      setEmail("");
+    },
+    onError: (error: any) => {
+      const message = error.message?.includes("already subscribed")
+        ? "This email is already subscribed to our newsletter."
+        : "Failed to subscribe. Please try again.";
+      toast({
+        title: "Error",
+        description: message,
+        variant: "destructive",
+      });
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Newsletter subscription:", email);
-    setEmail("");
+    mutation.mutate(email);
   };
 
   return (
@@ -38,6 +64,7 @@ export default function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
+                disabled={mutation.isPending}
                 className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
                 data-testid="input-newsletter-email"
               />
@@ -45,9 +72,10 @@ export default function Newsletter() {
                 type="submit"
                 variant="secondary"
                 className="flex-shrink-0"
+                disabled={mutation.isPending}
                 data-testid="button-subscribe"
               >
-                Subscribe
+                {mutation.isPending ? "..." : "Subscribe"}
               </Button>
             </div>
             <p className="text-xs opacity-75 mt-3">
