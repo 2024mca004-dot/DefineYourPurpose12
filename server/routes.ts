@@ -17,9 +17,7 @@ if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-10-29.clover",
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 function requireAuth(req: any, res: any, next: any) {
   if (!req.isAuthenticated()) {
@@ -92,7 +90,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/companies", async (req, res) => {
+  app.post("/api/companies", requireAuth, async (req, res) => {
     try {
       const data = insertCompanySchema.parse(req.body);
       const company = await storage.createCompany(data);
@@ -102,9 +100,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/companies/:id", async (req, res) => {
+  app.patch("/api/companies/:id", requireAuth, async (req, res) => {
     try {
-      const company = await storage.updateCompany(req.params.id, req.body);
+      const data = insertCompanySchema.partial().parse(req.body);
+      const company = await storage.updateCompany(req.params.id, data);
       if (!company) {
         return res.status(404).json({ error: "Company not found" });
       }
@@ -145,7 +144,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/listings", async (req, res) => {
+  app.post("/api/listings", requireAuth, async (req, res) => {
     try {
       const data = insertBusinessListingSchema.parse(req.body);
       const listing = await storage.createBusinessListing(data);
@@ -155,9 +154,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/listings/:id", async (req, res) => {
+  app.patch("/api/listings/:id", requireAuth, async (req, res) => {
     try {
-      const listing = await storage.updateBusinessListing(req.params.id, req.body);
+      const data = insertBusinessListingSchema.partial().parse(req.body);
+      const listing = await storage.updateBusinessListing(req.params.id, data);
       if (!listing) {
         return res.status(404).json({ error: "Listing not found" });
       }
@@ -189,7 +189,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog", async (req, res) => {
+  app.post("/api/blog", requireAuth, async (req, res) => {
     try {
       const data = insertBlogPostSchema.parse(req.body);
       const post = await storage.createBlogPost(data);
@@ -199,9 +199,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/blog/:id", async (req, res) => {
+  app.patch("/api/blog/:id", requireAuth, async (req, res) => {
     try {
-      const post = await storage.updateBlogPost(req.params.id, req.body);
+      const data = insertBlogPostSchema.partial().parse(req.body);
+      const post = await storage.updateBlogPost(req.params.id, data);
       if (!post) {
         return res.status(404).json({ error: "Blog post not found" });
       }
