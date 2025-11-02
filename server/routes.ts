@@ -1,13 +1,16 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
+import passport from "passport";
 import { storage } from "./storage";
+import { hashPassword } from "./auth";
 import {
   insertCompanySchema,
   insertBusinessListingSchema,
   insertBlogPostSchema,
   insertLeadSchema,
   insertNewsletterSubscriberSchema,
+  insertUserSchema,
 } from "@shared/schema";
 
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -18,7 +21,56 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2025-10-29.clover",
 });
 
+function requireAuth(req: any, res: any, next: any) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
+  app.post("/api/auth/register", async (req, res) => {
+    try {
+      const { username, password } = insertUserSchema.parse(req.body);
+      const existingUser = await storage.getUserByUsername(username);
+      
+      if (existingUser) {
+        return res.status(400).json({ error: "Username already exists" });
+      }
+
+      const hashedPassword = await hashPassword(password);
+      const user = await storage.createUser({
+        username,
+        password: hashedPassword,
+      });
+
+      res.status(201).json({
+        id: user.id,
+        username: user.username,
+      });
+    } catch (error) {
+      res.status(400).json({ error: "Invalid registration data" });
+    }
+  });
+
+  app.post("/api/auth/login", passport.authenticate("local"), (req, res) => {
+    res.json(req.user);
+  });
+
+  app.post("/api/auth/logout", (req, res) => {
+    req.logout(() => {
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+
+  app.get("/api/auth/me", (req, res) => {
+    if (req.isAuthenticated()) {
+      res.json(req.user);
+    } else {
+      res.status(401).json({ error: "Not authenticated" });
+    }
+  });
+
   app.get("/api/companies", async (req, res) => {
     try {
       const companies = await storage.getCompanies();
