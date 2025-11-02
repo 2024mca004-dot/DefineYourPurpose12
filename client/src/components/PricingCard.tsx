@@ -1,9 +1,11 @@
+import { useLocation } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 
 interface PricingCardProps {
+  id: string;
   name: string;
   price: string;
   description: string;
@@ -11,7 +13,13 @@ interface PricingCardProps {
   popular?: boolean;
 }
 
-export default function PricingCard({ name, price, description, features, popular = false }: PricingCardProps) {
+export default function PricingCard({ id, name, price, description, features, popular = false }: PricingCardProps) {
+  const [, navigate] = useLocation();
+
+  const handleGetStarted = () => {
+    navigate(`/checkout?planId=${id}`);
+  };
+
   return (
     <Card
       className={`p-8 space-y-6 relative ${popular ? 'border-primary shadow-lg' : ''}`}
@@ -51,7 +59,7 @@ export default function PricingCard({ name, price, description, features, popula
       <Button
         className="w-full"
         variant={popular ? "default" : "outline"}
-        onClick={() => console.log(`Get started with ${name}`)}
+        onClick={handleGetStarted}
         data-testid={`button-get-started-${name.toLowerCase().replace(/\s+/g, '-')}`}
       >
         Get Started

@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import Stripe from "stripe";
 import { storage } from "./storage";
 import {
   insertCompanySchema,
@@ -8,6 +9,14 @@ import {
   insertLeadSchema,
   insertNewsletterSubscriberSchema,
 } from "@shared/schema";
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2025-10-29.clover",
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/companies", async (req, res) => {
@@ -189,6 +198,81 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch subscribers" });
     }
+  });
+
+  app.post("/api/create-checkout-session", async (req, res) => {
+    try {
+      const { planId, email, companyName } = req.body;
+      
+      if (!planId || !email || !companyName) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      const plan = await storage.getSubscriptionPlan(planId);
+      if (!plan) {
+        return res.status(404).json({ error: "Plan not found" });
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: [
+          {
+            price_data: {
+              currency: "inr",
+              product_data: {
+                name: `${plan.name} Plan - Business Listing`,
+                description: plan.description,
+              },
+              unit_amount: plan.price * 100,
+              recurring: {
+                interval: "month",
+              },
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "subscription",
+        success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.origin}/#pricing`,
+        customer_email: email,
+        metadata: {
+          planId: plan.id,
+          companyName,
+        },
+      });
+
+      res.json({ sessionId: session.id, url: session.url });
+    } catch (error: any) {
+      res.status(500).json({ error: "Error creating checkout session: " + error.message });
+    }
+  });
+
+  app.post("/api/webhook/stripe", async (req, res) => {
+    const sig = req.headers["stripe-signature"];
+    
+    if (!sig) {
+      return res.status(400).send("Missing stripe signature");
+    }
+
+    let event: Stripe.Event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.body,
+        sig,
+        process.env.STRIPE_WEBHOOK_SECRET || ""
+      );
+    } catch (err: any) {
+      console.error("Webhook signature verification failed:", err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    if (event.type === "checkout.session.completed") {
+      const session = event.data.object as Stripe.Checkout.Session;
+      console.log("Payment successful for session:", session.id);
+    }
+
+    res.json({ received: true });
   });
 
   const httpServer = createServer(app);
