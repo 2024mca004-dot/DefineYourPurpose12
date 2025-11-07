@@ -11,6 +11,8 @@ interface BusinessListingCardProps {
   description: string;
   pricing: string;
   featured?: boolean;
+  contactEmail?: string;
+  website?: string;
 }
 
 export default function BusinessListingCard({
@@ -20,8 +22,26 @@ export default function BusinessListingCard({
   category,
   description,
   pricing,
-  featured = false
+  featured = false,
+  contactEmail,
+  website
 }: BusinessListingCardProps) {
+  const handleContact = () => {
+    if (contactEmail) {
+      window.location.href = `mailto:${contactEmail}`;
+    } else {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleViewProfile = () => {
+    if (website) {
+      window.open(website, '_blank', 'noopener,noreferrer');
+    }
+  };
   return (
     <Card className="overflow-hidden hover-elevate transition-all" data-testid={`card-listing-${name.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="relative aspect-video">
@@ -69,19 +89,21 @@ export default function BusinessListingCard({
             <Button
               size="sm"
               variant="outline"
-              onClick={() => console.log(`Contact ${name}`)}
+              onClick={handleContact}
               data-testid={`button-contact-${name.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <Mail className="w-4 h-4" />
             </Button>
-            <Button
-              size="sm"
-              onClick={() => console.log(`View ${name} profile`)}
-              data-testid={`button-view-profile-${name.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              View Profile
-              <ExternalLink className="w-4 h-4 ml-1" />
-            </Button>
+            {website && (
+              <Button
+                size="sm"
+                onClick={handleViewProfile}
+                data-testid={`button-view-profile-${name.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                View Profile
+                <ExternalLink className="w-4 h-4 ml-1" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
