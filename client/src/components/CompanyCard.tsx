@@ -11,13 +11,6 @@ interface CompanyCardProps {
 }
 
 export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
-  const handleCollaborate = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <Card className="p-8 space-y-6 hover-elevate transition-all" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="flex items-start justify-between gap-4">
@@ -39,19 +32,17 @@ export default function CompanyCard({ logo, name, tagline, description, website 
       </div>
 
       <div className="flex flex-wrap gap-3 pt-4">
-        {website && (
-          <Button
-            variant="default"
-            onClick={() => window.open(website, '_blank', 'noopener,noreferrer')}
-            data-testid={`button-visit-${name.toLowerCase().replace(/\s+/g, '-')}`}
-          >
-            <ExternalLink className="w-4 h-4 mr-2" />
-            Visit Website
-          </Button>
-        )}
+        <Button
+          variant="default"
+          onClick={() => console.log(`Visit ${name} website`)}
+          data-testid={`button-visit-${name.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          <ExternalLink className="w-4 h-4 mr-2" />
+          Visit Website
+        </Button>
         <Button
           variant="outline"
-          onClick={handleCollaborate}
+          onClick={() => console.log(`Collaborate with ${name}`)}
           data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
           <Handshake className="w-4 h-4 mr-2" />

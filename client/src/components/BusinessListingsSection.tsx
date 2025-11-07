@@ -62,8 +62,6 @@ export default function BusinessListingsSection() {
                 description={listing.description}
                 pricing={`₹${listing.planId ? '5,000' : '2,000'}/month`}
                 featured={listing.isFeatured}
-                contactEmail={listing.contactEmail}
-                website={listing.website || undefined}
               />
             ))}
           </div>

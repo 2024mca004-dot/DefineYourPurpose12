@@ -1,14 +1,10 @@
-# Prashun Shetty Personal Branding & Business Listing Platform
+# Prashun Shetty Personal Branding & Business Marketplace Platform
 
 ## Overview
 
-This is a personal branding and business listing marketplace platform for Prashun Shetty, an SAP S/4 HANA Mentor and founder of multiple companies. The platform serves three core purposes:
+This is a full-stack web application serving as a personal branding platform for Prashun Shetty, SAP S/4 HANA Mentor and entrepreneur. The platform showcases three main companies (TagSkills EdTech, Invayas Technologies, and Frillory Design House) while also functioning as a marketplace for EdTech and business partners to list their companies through paid subscription plans.
 
-1. **Personal Branding** - Showcasing Prashun Shetty's achievements, expertise, and leadership in SAP and EdTech
-2. **Company Showcase** - Highlighting three core companies: TagSkills EdTech, Invayas Technologies, and Frillory Design House
-3. **Business Listing Marketplace** - A lead generation platform where EdTech and startup companies can list their businesses, subscribe to monthly plans, and generate leads through contact forms
-
-The platform is built as a full-stack web application with a professional SaaS-inspired design system, drawing inspiration from Stripe's clarity, Linear's precision, and enterprise platforms like HubSpot.
+The application enables lead generation through contact forms, newsletter subscriptions, and business listing inquiries. It integrates Stripe for payment processing and provides a content management system for blog posts, companies, and business listings.
 
 ## User Preferences
 
@@ -18,134 +14,101 @@ Preferred communication style: Simple, everyday language.
 
 ### Frontend Architecture
 
-**Technology Stack:**
-- React with TypeScript for type-safe component development
-- Vite as the build tool and development server
-- Wouter for client-side routing (lightweight alternative to React Router)
-- TanStack Query (React Query) for server state management and API data fetching
-- Tailwind CSS for utility-first styling
+**Framework**: React 18 with TypeScript, built using Vite as the build tool and development server.
 
-**UI Component System:**
-- shadcn/ui component library with Radix UI primitives for accessible components
-- Custom design system using Inter (primary) and Poppins (secondary) fonts
-- Comprehensive component catalog in `/client/src/components/ui/`
-- Reusable page sections in `/client/src/components/` (Hero, CompaniesSection, BlogSection, etc.)
+**UI Component System**: Utilizes shadcn/ui (a collection of re-usable components built with Radix UI primitives) in the "new-york" style variant. This provides accessible, customizable components with consistent styling.
 
-**Design Principles:**
-- Professional authority with clean, confident design
-- Clear information hierarchy for complex content sections
-- Conversion-focused with strategic CTAs for lead generation
-- Responsive mobile-first approach with breakpoints at 768px and 1024px
-- Consistent spacing system using multiples of 4px (4, 6, 8, 12, 16, 20, 24)
+**Styling Approach**: TailwindCSS with custom design tokens. The design system follows professional SaaS patterns inspired by Stripe and Linear, emphasizing clarity, trust, and conversion optimization. Custom CSS variables handle theming for both light and dark modes.
 
-**State Management Strategy:**
-- Server state managed via React Query with infinite stale time and no automatic refetching
-- Form state handled locally with React hooks
-- Authentication state managed through passport session cookies
-- No global client state management library needed
+**State Management**: React Query (TanStack Query) handles all server state management, data fetching, caching, and synchronization. Local component state uses React hooks.
+
+**Routing**: Wouter is used for client-side routing, providing a lightweight alternative to React Router. Routes include Home (`/`), Checkout (`/checkout`), Success (`/success`), and a 404 page.
+
+**Design Principles**: 
+- Professional typography using Inter (primary) and Poppins (headings)
+- Consistent spacing primitives (4, 6, 8, 12, 16, 20, 24)
+- Container max-width of 7xl with responsive padding
+- Elevation-based interaction states (hover-elevate, active-elevate-2)
 
 ### Backend Architecture
 
-**Technology Stack:**
-- Node.js with Express.js for the HTTP server
-- TypeScript for type safety across the full stack
-- Drizzle ORM for database interactions with type-safe schema
-- Neon serverless PostgreSQL for database (configured but can be swapped)
-- Passport.js with local strategy for authentication
+**Server Framework**: Express.js running on Node.js with TypeScript. The server handles API routes, authentication, session management, and serves the static frontend in production.
 
-**API Design:**
-- RESTful API endpoints under `/api/` prefix
-- JSON request/response format
-- Session-based authentication with express-session
-- Protected admin routes using `requireAuth` middleware
-
-**Key API Endpoints:**
-- `/api/companies` - CRUD operations for company showcase
+**API Design**: RESTful API with endpoints organized by resource type:
+- `/api/auth/*` - Authentication (register, login, logout, user info)
+- `/api/companies` - Company CRUD operations
 - `/api/listings` - Business listing management with category filtering
-- `/api/plans` - Subscription plan management
-- `/api/blog` - Blog post CRUD operations
+- `/api/plans` - Subscription plan retrieval
+- `/api/blog` - Blog post management
 - `/api/leads` - Lead capture from contact forms
 - `/api/newsletter` - Newsletter subscription management
-- `/api/create-checkout-session` - Stripe payment integration
-- `/api/auth/*` - Authentication endpoints (register, login, logout)
+- `/api/create-checkout-session` - Stripe checkout session creation
+- `/api/webhook` - Stripe webhook handler for payment events
 
-**Authentication Strategy:**
-- Password hashing using Node.js crypto scrypt with random salts
-- Session storage using memory store (can be upgraded to PostgreSQL store via connect-pg-simple)
-- User model with username and hashed password fields
-- Protected routes require authentication middleware
+**Session Management**: Uses express-session with MemoryStore for development. Sessions are configured with secure cookies and handle user authentication state.
 
-### Data Storage Architecture
+**Authentication Strategy**: Passport.js with Local Strategy for username/password authentication. Passwords are hashed using scrypt with random salts. Authentication middleware (`requireAuth`) protects admin endpoints.
 
-**Database Schema (Drizzle ORM):**
+**Development Mode**: Hot module replacement (HMR) through Vite middleware integrated into Express. The server proxies all non-API requests to Vite during development.
 
-The application uses a relational schema with the following core tables:
+**Production Build**: Frontend is built to `dist/public`, backend is bundled using esbuild to `dist/index.js`.
 
-1. **users** - Authentication and user management
-   - id (UUID primary key)
-   - username (unique)
-   - password (hashed)
+### Data Storage
 
-2. **companies** - Showcase of owned companies
-   - id, name, tagline, description, logo, website, order, createdAt
+**Database**: PostgreSQL (configured to use Neon serverless Postgres with WebSocket support via `@neondatabase/serverless`).
 
-3. **subscriptionPlans** - Pricing tiers for business listings
-   - id, name, price, description, features (array), isPopular, stripePriceId, createdAt
+**ORM**: Drizzle ORM provides type-safe database access with zero-cost type inference. Schema definitions are shared between client and server through the `shared/schema.ts` file.
 
-4. **businessListings** - Third-party company listings
-   - id, name, category, description, banner, logo, contactEmail, website, planId (FK), isFeatured, isActive, createdAt, expiresAt
+**Schema Structure**:
+- `users` - Authentication credentials (username, hashed password)
+- `companies` - Prashun Shetty's three main companies with logo, description, tagline, website, and display order
+- `subscription_plans` - Pricing tiers for business listings (name, price, features array, Stripe price ID)
+- `business_listings` - Partner company listings linked to subscription plans (banner, logo, category, contact info, featured status, expiration)
+- `blog_posts` - Content management for SAP insights blog (title, excerpt, image, category, publish status)
+- `leads` - Contact form submissions (name, email, company, message, source)
+- `newsletter_subscribers` - Email list for newsletter
 
-5. **blogPosts** - SAP insights and thought leadership content
-   - id, title, excerpt, content, image, category, readTime, isPublished, publishedAt, createdAt
+**Data Access Layer**: Storage abstraction (`server/storage.ts`) implements an `IStorage` interface, providing CRUD operations for all entities. This allows for potential storage backend changes without affecting business logic.
 
-6. **leads** - Contact form submissions and inquiries
-   - id, name, email, company, message, source, createdAt
+**Migrations**: Drizzle Kit manages schema migrations with configuration in `drizzle.config.ts`. Migrations are stored in the `migrations/` directory.
 
-7. **newsletterSubscribers** - Email newsletter subscriptions
-   - id, email, subscribedAt
-
-**Database Connection:**
-- Uses Neon serverless PostgreSQL with WebSocket support
-- Connection pooling via @neondatabase/serverless Pool
-- Environment variable `DATABASE_URL` required for connection
-- Drizzle Kit for schema migrations in `/migrations` directory
-
-**Seeding Strategy:**
-- Initial seed data in `server/seed.ts` for companies, subscription plans, and sample content
-- Checks for existing data before inserting to prevent duplicates
+**Seeding**: Initial data seeding (`server/seed.ts`) populates the three main companies and subscription plans on first run.
 
 ### External Dependencies
 
-**Payment Processing:**
-- **Stripe Integration** - Subscription payment handling
-  - Frontend: `@stripe/stripe-js` and `@stripe/react-stripe-js` for checkout UI
-  - Backend: Stripe Node.js SDK for creating checkout sessions
-  - Environment variables required: `STRIPE_SECRET_KEY` (server), `VITE_STRIPE_PUBLIC_KEY` (client)
-  - Subscription plans linked via `stripePriceId` field
-  - Checkout flow: Plan selection → `/checkout` page → Stripe session → `/success` redirect
+**Payment Processing**: Stripe integration for subscription payments
+- Uses Stripe Elements and Stripe.js on the frontend
+- Backend creates checkout sessions and handles webhook events
+- Environment variables: `STRIPE_SECRET_KEY`, `VITE_STRIPE_PUBLIC_KEY`
+- API version: "2025-10-29.clover"
 
-**Database Service:**
-- **Neon Serverless PostgreSQL** - Cloud PostgreSQL database
-  - Serverless architecture with automatic scaling
-  - WebSocket connections for real-time capabilities
-  - Requires `DATABASE_URL` environment variable
-  - Can be replaced with any PostgreSQL-compatible database
+**Database Service**: Neon Serverless Postgres
+- Serverless PostgreSQL with WebSocket support
+- Connection via `DATABASE_URL` environment variable
+- Uses connection pooling via `@neondatabase/serverless` Pool
 
-**Session Management:**
-- Session storage using `memorystore` (development)
-- Can be upgraded to PostgreSQL-backed sessions via `connect-pg-simple` package
-- Requires `SESSION_SECRET` environment variable for secure session encryption
+**Email/Newsletter**: Infrastructure for newsletter subscriptions is in place (database schema, API endpoints), but actual email sending service is not yet integrated.
 
-**Development Tools:**
-- Replit-specific plugins for development environment (@replit/vite-plugin-runtime-error-modal, @replit/vite-plugin-cartographer, @replit/vite-plugin-dev-banner)
-- Only loaded in development mode when `REPL_ID` is present
+**Session Storage**: Currently uses in-memory session store (MemoryStore from `memorystore` package). In production, this should be replaced with a persistent store like Redis or PostgreSQL-backed sessions (`connect-pg-simple` is already installed but not configured).
 
-**Email Service:**
-- Newsletter subscription storage (no email provider integrated yet)
-- Lead submissions stored in database for manual follow-up
-- Ready for integration with SendGrid, Mailgun, or similar services
+**Image Assets**: Static images are stored in `attached_assets/` directory with references in the database. The application serves both uploaded assets and generated placeholder images.
 
-**Asset Management:**
-- Static assets stored in `/attached_assets` directory
-- Images referenced using Vite's asset import system
-- Path aliases configured: `@assets` maps to `/attached_assets`
+**Font Services**: Google Fonts CDN for typography (Inter, Poppins, DM Sans, Fira Code, Geist Mono, Architects Daughter).
+
+**Build Tools**:
+- Vite for frontend bundling and development server
+- esbuild for backend bundling
+- TypeScript compiler for type checking
+- PostCSS with Tailwind and Autoprefixer
+
+**Replit-Specific Integrations**: When running on Replit (`REPL_ID` environment variable present), the application loads additional Vite plugins:
+- `@replit/vite-plugin-cartographer` - Development tooling
+- `@replit/vite-plugin-dev-banner` - Development banner
+- `@replit/vite-plugin-runtime-error-modal` - Runtime error overlay
+
+**Environment Variables Required**:
+- `DATABASE_URL` - PostgreSQL connection string
+- `STRIPE_SECRET_KEY` - Stripe secret key for backend
+- `VITE_STRIPE_PUBLIC_KEY` - Stripe publishable key for frontend
+- `SESSION_SECRET` - Secret for session signing (defaults to "prashun-shetty-platform-secret")
+- `NODE_ENV` - Environment mode (development/production)

@@ -17,55 +17,31 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a 
-              href="#companies" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors" 
-              data-testid="link-companies"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('companies')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            <Link href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-about">
+              About
+            </Link>
+            <Link href="#companies" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-companies">
               Companies
-            </a>
-            <a 
-              href="#listings" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors" 
-              data-testid="link-listings"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            </Link>
+            <Link href="#listings" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-listings">
               Business Listings
-            </a>
-            <a 
-              href="#blog" 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors" 
-              data-testid="link-blog"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            </Link>
+            <Link href="#blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-blog">
               SAP Insights
-            </a>
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button 
-              variant="outline" 
-              data-testid="button-partner"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Partner With Us
-            </Button>
-            <Button 
-              data-testid="button-list-company"
-              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              List Your Company
-            </Button>
+            <Link href="#contact">
+              <Button variant="outline" data-testid="button-partner">
+                Partner With Us
+              </Button>
+            </Link>
+            <Link href="#pricing">
+              <Button data-testid="button-list-company">
+                List Your Company
+              </Button>
+            </Link>
           </div>
 
           <button
@@ -81,64 +57,29 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-t">
           <div className="px-6 py-4 space-y-4">
-            <a 
-              href="#companies" 
-              className="block text-sm font-medium py-2" 
-              data-testid="link-mobile-companies"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                document.getElementById('companies')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            <Link href="#about" className="block text-sm font-medium py-2" data-testid="link-mobile-about">
+              About
+            </Link>
+            <Link href="#companies" className="block text-sm font-medium py-2" data-testid="link-mobile-companies">
               Companies
-            </a>
-            <a 
-              href="#listings" 
-              className="block text-sm font-medium py-2" 
-              data-testid="link-mobile-listings"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            </Link>
+            <Link href="#listings" className="block text-sm font-medium py-2" data-testid="link-mobile-listings">
               Business Listings
-            </a>
-            <a 
-              href="#blog" 
-              className="block text-sm font-medium py-2" 
-              data-testid="link-mobile-blog"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            </Link>
+            <Link href="#blog" className="block text-sm font-medium py-2" data-testid="link-mobile-blog">
               SAP Insights
-            </a>
+            </Link>
             <div className="pt-4 space-y-3">
-              <Button 
-                variant="outline" 
-                className="w-full" 
-                data-testid="button-mobile-partner"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Partner With Us
-              </Button>
-              <Button 
-                className="w-full" 
-                data-testid="button-mobile-list"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                List Your Company
-              </Button>
+              <Link href="#contact" className="block">
+                <Button variant="outline" className="w-full" data-testid="button-mobile-partner">
+                  Partner With Us
+                </Button>
+              </Link>
+              <Link href="#pricing" className="block">
+                <Button className="w-full" data-testid="button-mobile-list">
+                  List Your Company
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
