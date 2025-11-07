@@ -18,7 +18,7 @@ export default function PricingSection() {
           {subscriptionPlans.map((plan) => (
             <PricingCard
               key={plan.id}
-              id={plan.id}
+              id={String(plan.id)}
               name={plan.name}
               price={`₹${plan.price.toLocaleString()}`}
               description={plan.description}
