@@ -1,0 +1,80 @@
+export const blogPosts = [
+  {
+    id: 1,
+    title: "SAP S/4HANA Migration: A Complete Guide for 2025",
+    slug: "sap-s4hana-migration-guide-2025",
+    excerpt: "Comprehensive insights into planning and executing a successful SAP S/4HANA migration with minimal business disruption.",
+    content: "Full article content here...",
+    category: "SAP S/4HANA",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    readTime: "8 min read",
+    isPublished: true,
+    publishedAt: new Date("2025-01-15"),
+    createdAt: new Date("2025-01-15")
+  },
+  {
+    id: 2,
+    title: "SAP Fiori 3.0: Enhancing User Experience in Enterprise Applications",
+    slug: "sap-fiori-3-user-experience",
+    excerpt: "Explore how SAP Fiori 3.0 revolutionizes enterprise UX with modern design principles and responsive interfaces.",
+    content: "Full article content here...",
+    category: "SAP Fiori",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    readTime: "6 min read",
+    isPublished: true,
+    publishedAt: new Date("2025-01-10"),
+    createdAt: new Date("2025-01-10")
+  },
+  {
+    id: 3,
+    title: "AI Integration in SAP BTP: Building Intelligent Business Processes",
+    slug: "ai-integration-sap-btp",
+    excerpt: "Learn how to leverage AI services on SAP Business Technology Platform to create smarter, data-driven workflows.",
+    content: "Full article content here...",
+    category: "SAP BTP",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    readTime: "10 min read",
+    isPublished: true,
+    publishedAt: new Date("2025-01-05"),
+    createdAt: new Date("2025-01-05")
+  },
+  {
+    id: 4,
+    title: "Best Practices for SAP Security and Compliance",
+    slug: "sap-security-best-practices",
+    excerpt: "Essential security strategies and compliance frameworks for protecting your SAP enterprise environment.",
+    content: "Full article content here...",
+    category: "Enterprise Innovation",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+    readTime: "7 min read",
+    isPublished: true,
+    publishedAt: new Date("2024-12-28"),
+    createdAt: new Date("2024-12-28")
+  },
+  {
+    id: 5,
+    title: "Cloud-Native Development on SAP BTP",
+    slug: "cloud-native-development-sap-btp",
+    excerpt: "Master cloud-native application development using SAP BTP's microservices architecture and containerization.",
+    content: "Full article content here...",
+    category: "SAP BTP",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    readTime: "9 min read",
+    isPublished: true,
+    publishedAt: new Date("2024-12-20"),
+    createdAt: new Date("2024-12-20")
+  },
+  {
+    id: 6,
+    title: "SAP HANA Performance Optimization Techniques",
+    slug: "sap-hana-performance-optimization",
+    excerpt: "Advanced techniques for optimizing SAP HANA database performance and reducing query response times.",
+    content: "Full article content here...",
+    category: "SAP S/4HANA",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    readTime: "11 min read",
+    isPublished: true,
+    publishedAt: new Date("2024-12-15"),
+    createdAt: new Date("2024-12-15")
+  }
+];

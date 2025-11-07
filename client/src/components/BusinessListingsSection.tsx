@@ -1,23 +1,19 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useMemo } from "react";
 import BusinessListingCard from "./BusinessListingCard";
 import { Button } from "@/components/ui/button";
-import type { BusinessListing } from "@shared/schema";
+import { businessListings } from "@/data/businessListings";
 
 const categories = ["All", "EdTech", "SAP Partner", "Training", "Recruitment"];
 
 export default function BusinessListingsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const { data: listings, isLoading } = useQuery<BusinessListing[]>({
-    queryKey: ["/api/listings", selectedCategory],
-    queryFn: async () => {
-      const params = selectedCategory !== "All" ? `?category=${selectedCategory}` : "";
-      const res = await fetch(`/api/listings${params}`);
-      if (!res.ok) throw new Error("Failed to fetch listings");
-      return res.json();
-    },
-  });
+  const filteredListings = useMemo(() => {
+    if (selectedCategory === "All") {
+      return businessListings;
+    }
+    return businessListings.filter(listing => listing.category === selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <section id="listings" className="py-20 lg:py-32">
@@ -44,15 +40,9 @@ export default function BusinessListingsSection() {
           ))}
         </div>
 
-        {isLoading ? (
+        {filteredListings.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="h-96 bg-card rounded-xl animate-pulse" />
-            ))}
-          </div>
-        ) : listings && listings.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {listings.map((listing) => (
+            {filteredListings.map((listing) => (
               <BusinessListingCard
                 key={listing.id}
                 banner={listing.banner}
@@ -60,8 +50,10 @@ export default function BusinessListingsSection() {
                 name={listing.name}
                 category={listing.category}
                 description={listing.description}
-                pricing={`₹${listing.planId ? '5,000' : '2,000'}/month`}
+                pricing={`₹${listing.planId === 3 ? '10,000' : listing.planId === 2 ? '5,000' : '2,000'}/month`}
                 featured={listing.isFeatured}
+                contactEmail={listing.contactEmail}
+                website={listing.website || undefined}
               />
             ))}
           </div>

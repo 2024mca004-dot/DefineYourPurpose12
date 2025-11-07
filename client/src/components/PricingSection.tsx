@@ -1,12 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import PricingCard from "./PricingCard";
-import type { SubscriptionPlan } from "@shared/schema";
+import { subscriptionPlans } from "@/data/subscriptionPlans";
 
 export default function PricingSection() {
-  const { data: plans, isLoading } = useQuery<SubscriptionPlan[]>({
-    queryKey: ["/api/plans"],
-  });
-
   return (
     <section id="pricing" className="py-20 lg:py-32 bg-muted/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -19,27 +14,19 @@ export default function PricingSection() {
           </p>
         </div>
 
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-96 bg-card rounded-xl animate-pulse" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {plans?.map((plan) => (
-              <PricingCard
-                key={plan.id}
-                id={plan.id}
-                name={plan.name}
-                price={`₹${plan.price.toLocaleString()}`}
-                description={plan.description}
-                features={plan.features}
-                popular={plan.isPopular}
-              />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {subscriptionPlans.map((plan) => (
+            <PricingCard
+              key={plan.id}
+              id={plan.id}
+              name={plan.name}
+              price={`₹${plan.price.toLocaleString()}`}
+              description={plan.description}
+              features={plan.features}
+              popular={plan.isPopular}
+            />
+          ))}
+        </div>
 
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
