@@ -38,7 +38,7 @@ export default function Header() {
               </Button>
             </Link>
             <Link href="#pricing">
-              <Button data-testid="button-list-company">
+              <Button variant="outline" data-testid="button-list-company">
                 List Your Company
               </Button>
             </Link>
@@ -76,7 +76,7 @@ export default function Header() {
                 </Button>
               </Link>
               <Link href="#pricing" className="block">
-                <Button className="w-full" data-testid="button-mobile-list">
+                <Button variant="outline" className="w-full" data-testid="button-mobile-list">
                   List Your Company
                 </Button>
               </Link>

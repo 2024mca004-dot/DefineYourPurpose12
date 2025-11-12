@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Award, Users, TrendingUp } from "lucide-react";
+import { Award, Users, TrendingUp } from "lucide-react";
 import heroImage from "@assets/image_1762091195476.png";
 
 export default function Hero() {
@@ -26,9 +26,8 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" data-testid="button-explore-companies">
+              <Button size="lg" variant="outline" data-testid="button-explore-companies">
                 Explore Companies
-                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button size="lg" variant="outline" data-testid="button-read-insights">
                 Read SAP Insights
