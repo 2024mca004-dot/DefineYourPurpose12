@@ -2,7 +2,6 @@ import { useLocation } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
 
 interface PricingCardProps {
   id: string;
@@ -49,9 +48,8 @@ export default function PricingCard({ id, name, price, description, features, po
 
       <ul className="space-y-3">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start gap-3">
-            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span className="text-sm text-foreground">{feature}</span>
+          <li key={index} className="text-sm text-foreground">
+            {feature}
           </li>
         ))}
       </ul>
