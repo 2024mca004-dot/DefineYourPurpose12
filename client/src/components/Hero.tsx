@@ -26,12 +26,16 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" variant="outline" data-testid="button-explore-companies">
-                Explore Companies
-              </Button>
-              <Button size="lg" variant="outline" data-testid="button-read-insights">
-                Read SAP Insights
-              </Button>
+              <a href="#companies">
+                <Button size="lg" variant="outline" data-testid="button-explore-companies">
+                  Explore Companies
+                </Button>
+              </a>
+              <a href="#blog">
+                <Button size="lg" variant="outline" data-testid="button-read-insights">
+                  Read SAP Insights
+                </Button>
+              </a>
             </div>
 
             <div className="grid grid-cols-3 gap-6 pt-8 border-t">

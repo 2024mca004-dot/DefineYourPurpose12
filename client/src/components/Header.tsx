@@ -17,31 +17,31 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-about">
+            <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-about">
               About
-            </Link>
-            <Link href="#companies" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-companies">
+            </a>
+            <a href="#companies" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-companies">
               Companies
-            </Link>
-            <Link href="#listings" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-listings">
+            </a>
+            <a href="#listings" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-listings">
               Business Listings
-            </Link>
-            <Link href="#blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-blog">
+            </a>
+            <a href="#blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-blog">
               SAP Insights
-            </Link>
+            </a>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link href="#contact">
+            <a href="#contact">
               <Button variant="outline" data-testid="button-partner">
                 Partner With Us
               </Button>
-            </Link>
-            <Link href="#pricing">
+            </a>
+            <a href="#pricing">
               <Button variant="outline" data-testid="button-list-company">
                 List Your Company
               </Button>
-            </Link>
+            </a>
           </div>
 
           <button
@@ -57,29 +57,29 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-t">
           <div className="px-6 py-4 space-y-4">
-            <Link href="#about" className="block text-sm font-medium py-2" data-testid="link-mobile-about">
+            <a href="#about" className="block text-sm font-medium py-2" data-testid="link-mobile-about">
               About
-            </Link>
-            <Link href="#companies" className="block text-sm font-medium py-2" data-testid="link-mobile-companies">
+            </a>
+            <a href="#companies" className="block text-sm font-medium py-2" data-testid="link-mobile-companies">
               Companies
-            </Link>
-            <Link href="#listings" className="block text-sm font-medium py-2" data-testid="link-mobile-listings">
+            </a>
+            <a href="#listings" className="block text-sm font-medium py-2" data-testid="link-mobile-listings">
               Business Listings
-            </Link>
-            <Link href="#blog" className="block text-sm font-medium py-2" data-testid="link-mobile-blog">
+            </a>
+            <a href="#blog" className="block text-sm font-medium py-2" data-testid="link-mobile-blog">
               SAP Insights
-            </Link>
+            </a>
             <div className="pt-4 space-y-3">
-              <Link href="#contact" className="block">
+              <a href="#contact" className="block">
                 <Button variant="outline" className="w-full" data-testid="button-mobile-partner">
                   Partner With Us
                 </Button>
-              </Link>
-              <Link href="#pricing" className="block">
+              </a>
+              <a href="#pricing" className="block">
                 <Button variant="outline" className="w-full" data-testid="button-mobile-list">
                   List Your Company
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
