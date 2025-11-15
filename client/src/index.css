@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);
