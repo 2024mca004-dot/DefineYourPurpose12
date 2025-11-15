@@ -12,7 +12,7 @@ interface CompanyCardProps {
 
 export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
   return (
-    <Card className="p-6 space-y-6 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Card className="p-6 space-y-6 border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="flex items-start justify-center">
         <div className="h-16 w-full flex items-center justify-center">
           <img src={logo} alt={`${name} logo`} className="h-full object-contain" data-testid={`img-logo-${name.toLowerCase().replace(/\s+/g, '-')}`} />

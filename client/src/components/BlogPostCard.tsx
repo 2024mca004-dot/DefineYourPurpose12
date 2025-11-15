@@ -14,7 +14,7 @@ interface BlogPostCardProps {
 export default function BlogPostCard({ image, category, title, excerpt, date, readTime }: BlogPostCardProps) {
   return (
     <Card
-      className="overflow-hidden hover-elevate active-elevate-2 cursor-pointer transition-all"
+      className="overflow-hidden border border-border rounded-lg shadow-sm hover:shadow-md cursor-pointer transition-all duration-200"
       onClick={() => console.log(`Open blog post: ${title}`)}
       data-testid={`card-blog-${title.toLowerCase().replace(/\s+/g, '-').substring(0, 30)}`}
     >
@@ -25,7 +25,7 @@ export default function BlogPostCard({ image, category, title, excerpt, date, re
           className="w-full h-full object-cover"
           data-testid={`img-blog-${title.toLowerCase().replace(/\s+/g, '-').substring(0, 30)}`}
         />
-        <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
+        <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-semibold">
           {category}
         </Badge>
       </div>

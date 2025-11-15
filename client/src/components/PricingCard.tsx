@@ -21,7 +21,7 @@ export default function PricingCard({ id, name, price, description, features, po
 
   return (
     <Card
-      className={`p-8 space-y-6 relative border rounded-lg ${popular ? 'border-l-4 border-accent shadow-lg' : 'border-gray-200 shadow-sm'} hover:shadow-md transition-all duration-200`}
+      className={`p-8 space-y-6 relative border rounded-lg ${popular ? 'border-l-4 border-l-accent shadow-lg' : 'border-border shadow-sm'} hover:shadow-md transition-all duration-200`}
       data-testid={`card-pricing-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {popular && (
