@@ -19,10 +19,10 @@ export default function BusinessListingsSection() {
     <section id="listings" className="py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground" data-testid="text-listings-title">
+          <h2 className="text-3xl lg:text-4xl font-semibold text-foreground" data-testid="text-listings-title">
             EdTech & Business Partners
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Connect with leading EdTech companies, SAP partners, and training providers in our ecosystem
           </p>
         </div>
@@ -31,6 +31,7 @@ export default function BusinessListingsSection() {
           {categories.map((category) => (
             <Button
               key={category}
+              className={selectedCategory === category ? "bg-accent text-accent-foreground hover:bg-accent/90 font-semibold" : "font-medium"}
               variant={selectedCategory === category ? "default" : "outline"}
               onClick={() => setSelectedCategory(category)}
               data-testid={`button-filter-${category.toLowerCase().replace(/\s+/g, '-')}`}
