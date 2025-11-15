@@ -12,29 +12,29 @@ interface CompanyCardProps {
 
 export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
   return (
-    <Card className="p-8 space-y-6 hover-elevate transition-all" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
-      <div className="flex items-start justify-between gap-4">
-        <div className="h-16 w-16 flex-shrink-0">
-          <img src={logo} alt={`${name} logo`} className="w-full h-full object-contain" data-testid={`img-logo-${name.toLowerCase().replace(/\s+/g, '-')}`} />
+    <Card className="p-6 space-y-6 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+      <div className="flex items-start justify-center">
+        <div className="h-16 w-full flex items-center justify-center">
+          <img src={logo} alt={`${name} logo`} className="h-full object-contain" data-testid={`img-logo-${name.toLowerCase().replace(/\s+/g, '-')}`} />
         </div>
       </div>
       
-      <div className="space-y-3">
+      <div className="space-y-3 text-center">
         <div>
-          <h3 className="text-2xl font-semibold text-foreground" data-testid={`text-name-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+          <h3 className="text-xl font-semibold text-foreground mb-1" data-testid={`text-name-${name.toLowerCase().replace(/\s+/g, '-')}`}>
             {name}
           </h3>
-          <p className="text-base text-muted-foreground font-medium">{tagline}</p>
+          <p className="text-sm text-muted-foreground font-medium">{tagline}</p>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
           {description}
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-3 pt-4">
+      <div className="flex flex-col gap-2 pt-2">
         <Button
-          variant="default"
-          onClick={() => console.log(`Visit ${name} website`)}
+          className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
+          onClick={() => window.open(website, '_blank')}
           data-testid={`button-visit-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
           <ExternalLink className="w-4 h-4 mr-2" />
@@ -42,6 +42,7 @@ export default function CompanyCard({ logo, name, tagline, description, website 
         </Button>
         <Button
           variant="outline"
+          className="font-medium"
           onClick={() => console.log(`Collaborate with ${name}`)}
           data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >

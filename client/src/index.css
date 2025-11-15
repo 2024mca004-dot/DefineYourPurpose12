@@ -53,21 +53,21 @@ html {
 
   --popover-border: 220 13% 89%;
 
-  --primary: 222 47% 25%;
+  --primary: 212 74% 15%;
 
-  --primary-foreground: 45 90% 95%;
+  --primary-foreground: 0 0% 100%;
 
   --secondary: 220 16% 88%;
 
-  --secondary-foreground: 222 47% 11%;
+  --secondary-foreground: 212 74% 15%;
 
   --muted: 220 13% 92%;
 
   --muted-foreground: 222 30% 35%;
 
-  --accent: 45 85% 90%;
+  --accent: 45 89% 50%;
 
-  --accent-foreground: 222 47% 11%;
+  --accent-foreground: 212 74% 15%;
 
   --destructive: 0 72% 35%;
 

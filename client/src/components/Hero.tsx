@@ -13,10 +13,10 @@ export default function Hero() {
               <Badge variant="secondary" className="text-xs font-semibold tracking-wide uppercase" data-testid="badge-role">
                 SAP S/4 HANA Mentor · Founder · Motivational Speaker
               </Badge>
-              <h1 className="text-5xl lg:text-6xl font-bold text-foreground" data-testid="text-name">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-foreground leading-tight" data-testid="text-name">
                 Prashun Shetty
               </h1>
-              <p className="text-xl lg:text-2xl text-muted-foreground font-medium">
+              <p className="text-xl lg:text-2xl text-muted-foreground font-medium leading-relaxed">
                 Transforming Skills, Technology & Education
               </p>
               <p className="text-base text-muted-foreground max-w-2xl">
@@ -27,12 +27,12 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4">
               <a href="#companies">
-                <Button size="lg" variant="outline" data-testid="button-explore-companies">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6" data-testid="button-explore-companies">
                   Explore Companies
                 </Button>
               </a>
               <a href="#blog">
-                <Button size="lg" variant="outline" data-testid="button-read-insights">
+                <Button size="lg" variant="outline" className="font-semibold px-6" data-testid="button-read-insights">
                   Read SAP Insights
                 </Button>
               </a>

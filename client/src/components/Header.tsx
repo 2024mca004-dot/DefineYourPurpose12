@@ -33,12 +33,12 @@ export default function Header() {
 
           <div className="hidden md:flex items-center gap-4">
             <a href="#contact">
-              <Button variant="outline" data-testid="button-partner">
+              <Button variant="outline" className="font-medium" data-testid="button-partner">
                 Partner With Us
               </Button>
             </a>
             <a href="#pricing">
-              <Button variant="outline" data-testid="button-list-company">
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold" data-testid="button-list-company">
                 List Your Company
               </Button>
             </a>
@@ -71,12 +71,12 @@ export default function Header() {
             </a>
             <div className="pt-4 space-y-3">
               <a href="#contact" className="block">
-                <Button variant="outline" className="w-full" data-testid="button-mobile-partner">
+                <Button variant="outline" className="w-full font-medium" data-testid="button-mobile-partner">
                   Partner With Us
                 </Button>
               </a>
               <a href="#pricing" className="block">
-                <Button variant="outline" className="w-full" data-testid="button-mobile-list">
+                <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold" data-testid="button-mobile-list">
                   List Your Company
                 </Button>
               </a>
