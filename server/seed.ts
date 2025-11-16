@@ -27,8 +27,8 @@ export async function seed() {
         name: "Frillory Design House",
         tagline: "Creative Excellence in Digital Design",
         description: "Premium design studio specializing in brand identity, UI/UX design, and creative solutions for modern businesses seeking distinctive visual presence.",
-        logo: "/assets/generated_images/Frillory_Design_House_logo_bf8228b5.png",
-        website: "https://frillory.com",
+        logo: "/attached_assets/image_1763310816169.png",
+        website: "https://www.frillory.com/",
         order: 3
       }
     ]);
