@@ -64,8 +64,8 @@ export default function Hero() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+            <div className="relative flex justify-center">
+              <div className="aspect-square rounded-full overflow-hidden max-w-md w-full shadow-2xl">
                 <img
                   src={heroImage}
                   alt="Prashun Shetty"
