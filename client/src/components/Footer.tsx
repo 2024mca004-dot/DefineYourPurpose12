@@ -1,4 +1,3 @@
-import { Link } from "wouter";
 import { Linkedin, Twitter, Youtube, Mail } from "lucide-react";
 
 export default function Footer() {
@@ -57,24 +56,24 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground">Quick Links</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
                   About Prashun
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#companies" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#companies" className="text-muted-foreground hover:text-foreground transition-colors">
                   Our Companies
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#blog" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#blog" className="text-muted-foreground hover:text-foreground transition-colors">
                   SAP Thought Hub
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   Contact Us
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -83,24 +82,24 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground">Resources</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#listings" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#listings" className="text-muted-foreground hover:text-foreground transition-colors">
                   Business Listings
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
                   Pricing Plans
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   Partnership Info
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   Career Opportunities
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -109,17 +108,17 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground">Companies</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://www.tagskills.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   TagSkills EdTech
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://www.invayas.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   Invayas Technologies
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://www.frillory.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   Frillory Design House
                 </a>
               </li>
@@ -132,15 +131,15 @@ export default function Footer() {
             © 2025 Prashun Shetty. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            </a>
+            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
               Terms of Service
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            </a>
+            <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
               Cookie Policy
-            </Link>
+            </a>
           </div>
         </div>
       </div>
