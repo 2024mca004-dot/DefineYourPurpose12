@@ -43,7 +43,7 @@ export default function CompanyCard({ logo, name, tagline, description, website 
         <Button
           variant="outline"
           className="font-medium"
-          onClick={() => console.log(`Collaborate with ${name}`)}
+          onClick={() => window.location.href = `mailto:prashun@tagskills.com?subject=Collaboration Inquiry - ${name}`}
           data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
           <Handshake className="w-4 h-4 mr-2" />
