@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Handshake } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface CompanyCardProps {
   logo: string;
@@ -11,6 +12,30 @@ interface CompanyCardProps {
 }
 
 export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
+  const { toast } = useToast();
+
+  const handleCollaborate = () => {
+    const email = "prashunsshetty@gmail.com";
+    const subject = `Collaboration Inquiry - ${name}`;
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+    
+    // Try to open mailto link
+    window.location.href = mailtoLink;
+    
+    // Also copy email to clipboard as fallback
+    navigator.clipboard.writeText(email).then(() => {
+      toast({
+        title: "Email Copied!",
+        description: `Contact: ${email}`,
+      });
+    }).catch(() => {
+      toast({
+        title: "Contact Email",
+        description: email,
+      });
+    });
+  };
+
   return (
     <Card className="p-6 space-y-6 border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="flex items-start justify-center">
@@ -43,13 +68,11 @@ export default function CompanyCard({ logo, name, tagline, description, website 
         <Button
           variant="outline"
           className="font-medium"
-          asChild
+          onClick={handleCollaborate}
           data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
-          <a href={`mailto:prashunsshetty@gmail.com?subject=Collaboration Inquiry - ${name}`}>
-            <Handshake className="w-4 h-4 mr-2" />
-            Collaborate
-          </a>
+          <Handshake className="w-4 h-4 mr-2" />
+          Collaborate
         </Button>
       </div>
     </Card>
