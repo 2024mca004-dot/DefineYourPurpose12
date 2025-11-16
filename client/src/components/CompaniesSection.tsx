@@ -3,7 +3,7 @@ import { companies } from "@/data/companies";
 
 export default function CompaniesSection() {
   return (
-    <section id="companies" className="py-20 lg:py-32">
+    <section id="companies" className="py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-3xl lg:text-4xl font-semibold text-foreground" data-testid="text-companies-title">
