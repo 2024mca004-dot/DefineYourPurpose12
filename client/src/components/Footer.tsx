@@ -15,7 +15,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/prashun-shetty-41903a39/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-md bg-muted hover-elevate active-elevate-2 flex items-center justify-center"
@@ -33,7 +33,7 @@ export default function Footer() {
                 <Twitter className="w-4 h-4" />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@prashunshetty5369"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-md bg-muted hover-elevate active-elevate-2 flex items-center justify-center"
@@ -42,7 +42,9 @@ export default function Footer() {
                 <Youtube className="w-4 h-4" />
               </a>
               <a
-                href="mailto:contact@prashunshetty.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=prashunsshetty@gmail.com&su=Contact%20Inquiry"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-md bg-muted hover-elevate active-elevate-2 flex items-center justify-center"
                 data-testid="link-email"
               >
