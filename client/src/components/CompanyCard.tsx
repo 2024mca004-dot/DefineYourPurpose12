@@ -43,11 +43,13 @@ export default function CompanyCard({ logo, name, tagline, description, website 
         <Button
           variant="outline"
           className="font-medium"
-          onClick={() => window.location.href = `mailto:prashunsshetty@gmail.com?subject=Collaboration Inquiry - ${name}`}
+          asChild
           data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
-          <Handshake className="w-4 h-4 mr-2" />
-          Collaborate
+          <a href={`mailto:prashunsshetty@gmail.com?subject=Collaboration Inquiry - ${name}`}>
+            <Handshake className="w-4 h-4 mr-2" />
+            Collaborate
+          </a>
         </Button>
       </div>
     </Card>
