@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Handshake } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 interface CompanyCardProps {
   logo: string;
@@ -12,28 +11,11 @@ interface CompanyCardProps {
 }
 
 export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
-  const { toast } = useToast();
-
   const handleCollaborate = () => {
     const email = "prashunsshetty@gmail.com";
     const subject = `Collaboration Inquiry - ${name}`;
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-    
-    // Try to open mailto link
-    window.location.href = mailtoLink;
-    
-    // Also copy email to clipboard as fallback
-    navigator.clipboard.writeText(email).then(() => {
-      toast({
-        title: "Email Copied!",
-        description: `Contact: ${email}`,
-      });
-    }).catch(() => {
-      toast({
-        title: "Contact Email",
-        description: email,
-      });
-    });
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+    window.open(gmailUrl, '_blank');
   };
 
   return (
