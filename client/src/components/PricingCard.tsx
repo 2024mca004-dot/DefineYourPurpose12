@@ -21,7 +21,7 @@ export default function PricingCard({ id, name, price, description, features, po
 
   return (
     <Card
-      className={`p-8 space-y-6 relative border rounded-lg ${popular ? 'border-l-4 border-l-accent shadow-lg' : 'border-border shadow-sm'} hover:shadow-md transition-all duration-200`}
+      className={`p-8 relative border rounded-lg flex flex-col ${popular ? 'border-l-4 border-l-accent shadow-lg' : 'border-border shadow-sm'} hover:shadow-md transition-all duration-200`}
       data-testid={`card-pricing-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {popular && (
@@ -30,14 +30,14 @@ export default function PricingCard({ id, name, price, description, features, po
         </Badge>
       )}
 
-      <div className="space-y-3">
+      <div className="space-y-3 mb-6">
         <h3 className="text-2xl font-semibold text-foreground" data-testid={`text-plan-name-${name.toLowerCase().replace(/\s+/g, '-')}`}>
           {name}
         </h3>
         <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-1 mb-6">
         <div className="flex items-baseline gap-1">
           <span className="text-4xl font-bold text-foreground" data-testid={`text-price-${name.toLowerCase().replace(/\s+/g, '-')}`}>
             {price}
@@ -46,7 +46,7 @@ export default function PricingCard({ id, name, price, description, features, po
         </div>
       </div>
 
-      <ul className="space-y-3">
+      <ul className="space-y-3 mb-6 flex-1">
         {features.map((feature, index) => (
           <li key={index} className="text-sm text-foreground flex items-start gap-2">
             <span className="text-accent mt-0.5">•</span>
