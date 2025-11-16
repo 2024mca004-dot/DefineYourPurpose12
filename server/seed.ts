@@ -11,8 +11,8 @@ export async function seed() {
         name: "TagSkills EdTech",
         tagline: "Transforming Education Through Technology",
         description: "Leading EdTech platform providing comprehensive SAP training, professional development courses, and skill enhancement programs for aspiring technology professionals.",
-        logo: "/attached_assets/image_1763309444790.png",
-        website: "https://tagskills.com",
+        logo: "/attached_assets/image_1763310394785.png",
+        website: "https://www.tagskills.com",
         order: 1
       },
       {
