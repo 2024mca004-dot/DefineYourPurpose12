@@ -43,8 +43,8 @@ export default function BusinessListingCard({
     }
   };
   return (
-    <Card className="overflow-hidden border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-listing-${name.toLowerCase().replace(/\s+/g, '-')}`}>
-      <div className="relative aspect-video">
+    <Card className="border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-listing-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+      <div className="relative aspect-video overflow-hidden rounded-t-lg">
         <img
           src={banner}
           alt={`${name} banner`}
@@ -57,7 +57,7 @@ export default function BusinessListingCard({
           </div>
         </div>
         {featured && (
-          <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground font-semibold">
+          <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground font-semibold px-3 py-1">
             Featured
           </Badge>
         )}
