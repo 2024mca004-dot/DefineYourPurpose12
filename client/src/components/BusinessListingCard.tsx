@@ -52,7 +52,7 @@ export default function BusinessListingCard({
           data-testid={`img-banner-${name.toLowerCase().replace(/\s+/g, '-')}`}
         />
         <div className="absolute bottom-4 left-4">
-          <div className="w-16 h-16 bg-background rounded-lg p-2 shadow-lg">
+          <div className="w-16 h-16 bg-background rounded-full p-2 shadow-lg">
             <img src={logo} alt={`${name} logo`} className="w-full h-full object-contain" />
           </div>
         </div>
