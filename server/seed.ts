@@ -19,8 +19,8 @@ export async function seed() {
         name: "Invayas Technologies",
         tagline: "Enterprise Solutions & Innovation",
         description: "Delivering cutting-edge SAP S/4HANA implementations, enterprise resource planning solutions, and digital transformation consulting services to businesses worldwide.",
-        logo: "/assets/generated_images/Invayas_Technologies_logo_7b61a3fd.png",
-        website: "https://invayas.com",
+        logo: "/attached_assets/image_1763310692087.png",
+        website: "https://www.invayas.com/",
         order: 2
       },
       {
