@@ -5,7 +5,7 @@ import heroImage from "@assets/image_1762091195476.png";
 
 export default function Hero() {
   return (
-    <section id="about" className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section id="about" className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-3 space-y-8">
@@ -63,7 +63,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-4">
             <div className="relative flex justify-center">
               <div className="aspect-square rounded-full overflow-hidden max-w-lg w-full shadow-2xl">
                 <img
@@ -75,7 +75,7 @@ export default function Hero() {
               </div>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-2">
               <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-wide">Founder</p>
               <div className="flex items-center justify-center gap-6">
                 <img 
