@@ -42,7 +42,7 @@ export default function Hero() {
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-primary">
                   <Award className="w-5 h-5" />
-                  <span className="text-2xl font-bold" data-testid="text-years">12+</span>
+                  <span className="text-2xl font-bold" data-testid="text-years">13+</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Years in SAP</p>
               </div>
