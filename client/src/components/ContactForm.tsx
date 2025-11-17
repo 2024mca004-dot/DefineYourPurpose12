@@ -55,7 +55,7 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <p className="text-sm text-muted-foreground">contact@prashunshetty.com</p>
+                    <p className="text-sm text-muted-foreground">prashunsshetty@gmail.com</p>
                   </div>
                 </div>
               </Card>
@@ -67,7 +67,7 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <p className="text-sm text-muted-foreground">+91 98765 43210</p>
+                    <p className="text-sm text-muted-foreground">+91 8971164999</p>
                   </div>
                 </div>
               </Card>
@@ -79,7 +79,7 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Location</h3>
-                    <p className="text-sm text-muted-foreground">Mumbai, Maharashtra, India</p>
+                    <p className="text-sm text-muted-foreground">Bangalore, Karnataka, India</p>
                   </div>
                 </div>
               </Card>
