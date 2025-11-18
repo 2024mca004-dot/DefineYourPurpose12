@@ -7,38 +7,39 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-3 hover-elevate active-elevate-2 px-3 py-2 rounded-md">
-            <div className="font-bold text-xl text-foreground">
-              <span className="text-primary">Prashun</span>{" "}Shetty
+          <Link href="/" className="flex items-center gap-3 hover-elevate active-elevate-2 px-3 py-2 rounded-md transition-all">
+            <div className="font-bold text-xl lg:text-2xl text-foreground tracking-tight">
+              <span className="text-primary">Prashun</span>{" "}
+              <span className="text-foreground">Shetty</span>
             </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-about">
+          <nav className="hidden md:flex items-center gap-1">
+            <a href="#about" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-about">
               About
             </a>
-            <a href="#companies" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-companies">
+            <a href="#companies" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-companies">
               Companies
             </a>
-            <a href="#listings" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-listings">
+            <a href="#listings" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-listings">
               Business Listings
             </a>
-            <a href="#blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors" data-testid="link-blog">
+            <a href="#blog" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-blog">
               SAP Insights
             </a>
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <a href="#contact">
-              <Button variant="outline" className="font-medium" data-testid="button-partner">
+              <Button variant="ghost" className="font-semibold" data-testid="button-partner">
                 Partner With Us
               </Button>
             </a>
             <a href="#pricing">
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold" data-testid="button-list-company">
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold shadow-sm rounded-xl px-6" data-testid="button-list-company">
                 List Your Company
               </Button>
             </a>
