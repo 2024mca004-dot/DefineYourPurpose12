@@ -38,22 +38,24 @@ export default function CompanyCard({ logo, name, tagline, description, website 
         </p>
       </div>
 
-      <div className="flex flex-col gap-2 pt-2">
+      <div className="flex flex-col gap-3 pt-4">
         <Button
-          className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
+          size="lg"
+          className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold shadow-sm hover:shadow-md transition-all rounded-xl"
           onClick={() => window.open(website, '_blank')}
           data-testid={`button-visit-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
-          <ExternalLink className="w-4 h-4 mr-2" />
+          <ExternalLink className="w-5 h-5 mr-2" />
           Visit Website
         </Button>
         <Button
           variant="outline"
-          className="font-medium"
+          size="lg"
+          className="font-semibold border-2 rounded-xl hover:bg-accent/10 transition-all"
           onClick={handleCollaborate}
           data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
         >
-          <Handshake className="w-4 h-4 mr-2" />
+          <Handshake className="w-5 h-5 mr-2" />
           Collaborate
         </Button>
       </div>
