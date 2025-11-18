@@ -32,7 +32,7 @@ export default function Hero() {
                 </Button>
               </a>
               <a href="#blog">
-                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6" data-testid="button-read-insights">
+                <Button size="lg" variant="outline" className="font-semibold px-6" data-testid="button-read-insights">
                   Read SAP Insights
                 </Button>
               </a>
