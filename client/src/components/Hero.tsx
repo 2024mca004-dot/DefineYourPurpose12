@@ -54,13 +54,15 @@ export default function Hero() {
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Years Experience</p>
               </div>
               <div className="space-y-3">
-                <div className="flex items-baseline gap-2">
+                <div className="flex items-center gap-2">
+                  <Users className="w-8 h-8 text-primary" />
                   <span className="text-4xl font-bold text-primary" data-testid="text-companies">3</span>
                 </div>
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Companies Founded</p>
               </div>
               <div className="space-y-3">
-                <div className="flex items-baseline gap-2">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-8 h-8 text-primary" />
                   <span className="text-4xl font-bold text-primary" data-testid="text-impact">1000+</span>
                 </div>
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Professionals Trained</p>
