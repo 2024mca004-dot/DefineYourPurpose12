@@ -12,7 +12,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 hover-elevate active-elevate-2 px-3 py-2 rounded-md">
             <div className="font-bold text-xl text-foreground">
-              <span className="text-primary">Prashun</span> Shetty
+              <span className="text-primary">Prashun</span>{" "}Shetty
             </div>
           </Link>
 
