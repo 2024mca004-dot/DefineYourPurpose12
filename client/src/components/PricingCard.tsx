@@ -2,6 +2,7 @@ import { useLocation } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
 interface PricingCardProps {
   id: string;
@@ -56,12 +57,14 @@ export default function PricingCard({ id, name, price, description, features, po
       </ul>
 
       <Button
-        className={popular ? "w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold" : "w-full font-medium"}
+        size="lg"
+        className={popular ? "w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold shadow-md hover:shadow-lg transition-all rounded-xl group" : "w-full font-semibold border-2 rounded-xl hover:bg-accent/10 transition-all group"}
         variant={popular ? "default" : "outline"}
         onClick={handleGetStarted}
         data-testid={`button-get-started-${name.toLowerCase().replace(/\s+/g, '-')}`}
       >
         Get Started
+        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
       </Button>
     </Card>
   );
