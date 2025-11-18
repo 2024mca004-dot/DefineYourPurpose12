@@ -5,7 +5,7 @@ import heroImage from "@assets/image_1762091195476.png";
 
 export default function Hero() {
   return (
-    <section id="about" className="relative pt-24 pb-12 lg:pt-28 lg:pb-16 overflow-hidden">
+    <section id="about" className="relative pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-3 space-y-8">
