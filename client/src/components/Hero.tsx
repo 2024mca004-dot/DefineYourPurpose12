@@ -5,7 +5,7 @@ import heroImage from "@assets/image_1762091195476.png";
 
 export default function Hero() {
   return (
-    <section id="about" className="relative pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
+    <section id="about" className="relative pt-24 pb-12 lg:pt-28 lg:pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-3 space-y-8">
@@ -32,7 +32,7 @@ export default function Hero() {
                 </Button>
               </a>
               <a href="#blog">
-                <Button size="lg" variant="outline" className="font-semibold px-6" data-testid="button-read-insights">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6" data-testid="button-read-insights">
                   Read SAP Insights
                 </Button>
               </a>
@@ -75,36 +75,27 @@ export default function Hero() {
               </div>
             </div>
             
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-2xl blur-xl"></div>
-              <div className="relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 space-y-4 shadow-lg">
-                <p className="text-center text-sm font-bold text-primary uppercase tracking-widest">Founder</p>
-                <div className="flex items-center justify-center gap-8 flex-wrap">
-                  <div className="group hover-elevate rounded-xl p-3 transition-all duration-300">
-                    <img 
-                      src="/attached_assets/image_1763310394785.png" 
-                      alt="TagSkills EdTech" 
-                      className="h-14 object-contain group-hover:scale-110 transition-transform duration-300"
-                      data-testid="img-founder-tagskills"
-                    />
-                  </div>
-                  <div className="group hover-elevate rounded-xl p-3 transition-all duration-300">
-                    <img 
-                      src="/attached_assets/image_1763310692087.png" 
-                      alt="Invayas Technologies" 
-                      className="h-14 object-contain group-hover:scale-110 transition-transform duration-300"
-                      data-testid="img-founder-invayas"
-                    />
-                  </div>
-                  <div className="group hover-elevate rounded-xl p-3 transition-all duration-300">
-                    <img 
-                      src="/attached_assets/image_1763310816169.png" 
-                      alt="Frillory Design House" 
-                      className="h-14 object-contain group-hover:scale-110 transition-transform duration-300"
-                      data-testid="img-founder-frillory"
-                    />
-                  </div>
-                </div>
+            <div className="space-y-2">
+              <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-wide">Founder</p>
+              <div className="flex items-center justify-center gap-6">
+                <img 
+                  src="/attached_assets/image_1763310394785.png" 
+                  alt="TagSkills EdTech" 
+                  className="h-12 object-contain"
+                  data-testid="img-founder-tagskills"
+                />
+                <img 
+                  src="/attached_assets/image_1763310692087.png" 
+                  alt="Invayas Technologies" 
+                  className="h-12 object-contain"
+                  data-testid="img-founder-invayas"
+                />
+                <img 
+                  src="/attached_assets/image_1763310816169.png" 
+                  alt="Frillory Design House" 
+                  className="h-12 object-contain"
+                  data-testid="img-founder-frillory"
+                />
               </div>
             </div>
           </div>
