@@ -37,7 +37,7 @@ export default function Hero() {
               <a href="#blog">
                 <Button 
                   size="lg" 
-                  className="bg-background text-foreground hover:bg-muted font-bold px-6 py-5 text-base rounded-xl border-2 transition-all" 
+                  className="bg-background text-foreground hover:bg-muted font-bold px-6 py-5 text-base rounded-xl border transition-all" 
                   data-testid="button-read-insights"
                 >
                   Read SAP Insights
