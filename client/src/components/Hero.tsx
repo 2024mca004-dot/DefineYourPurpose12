@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -120,30 +121,54 @@ export default function Hero() {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <div className="flex flex-col items-center space-y-6 py-4">
-            <div className="aspect-square rounded-full overflow-hidden w-48 h-48 shadow-2xl ring-4 ring-background">
+            <motion.div 
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+                delay: 0.1
+              }}
+              className="aspect-square rounded-full overflow-hidden w-48 h-48 shadow-2xl ring-4 ring-background"
+            >
               <img
                 src={heroImage}
                 alt="Prashun Shetty"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
             
             <div className="space-y-4 w-full">
-              <h2 className="text-center text-sm font-bold text-muted-foreground uppercase tracking-widest">
+              <motion.h2 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-center text-sm font-bold text-muted-foreground uppercase tracking-widest"
+              >
                 Founder of
-              </h2>
+              </motion.h2>
               <div className="flex items-center justify-center gap-6 flex-wrap">
-                <img 
+                <motion.img 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
                   src="/attached_assets/image_1763310394785.png" 
                   alt="TagSkills EdTech" 
                   className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
-                <img 
+                <motion.img 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
                   src="/attached_assets/image_1763310692087.png" 
                   alt="Invayas Technologies" 
                   className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
-                <img 
+                <motion.img 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
                   src="/attached_assets/image_1763310816169.png" 
                   alt="Frillory Design House" 
                   className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
