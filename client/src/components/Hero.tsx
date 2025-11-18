@@ -28,7 +28,7 @@ export default function Hero() {
               <a href="#companies">
                 <Button 
                   size="lg" 
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-8 py-6 text-base rounded-xl shadow-lg hover:shadow-xl transition-all" 
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-6 text-base rounded-xl border-4 border-foreground transition-all" 
                   data-testid="button-explore-companies"
                 >
                   Explore Companies
@@ -37,7 +37,7 @@ export default function Hero() {
               <a href="#blog">
                 <Button 
                   size="lg" 
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-8 py-6 text-base rounded-xl shadow-lg hover:shadow-xl transition-all" 
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-6 text-base rounded-xl border-4 border-foreground transition-all" 
                   data-testid="button-read-insights"
                 >
                   Read SAP Insights
