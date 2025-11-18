@@ -75,27 +75,36 @@ export default function Hero() {
               </div>
             </div>
             
-            <div className="space-y-2">
-              <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-wide">Founder</p>
-              <div className="flex items-center justify-center gap-6">
-                <img 
-                  src="/attached_assets/image_1763310394785.png" 
-                  alt="TagSkills EdTech" 
-                  className="h-12 object-contain"
-                  data-testid="img-founder-tagskills"
-                />
-                <img 
-                  src="/attached_assets/image_1763310692087.png" 
-                  alt="Invayas Technologies" 
-                  className="h-12 object-contain"
-                  data-testid="img-founder-invayas"
-                />
-                <img 
-                  src="/attached_assets/image_1763310816169.png" 
-                  alt="Frillory Design House" 
-                  className="h-12 object-contain"
-                  data-testid="img-founder-frillory"
-                />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-2xl blur-xl"></div>
+              <div className="relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 space-y-4 shadow-lg">
+                <p className="text-center text-sm font-bold text-primary uppercase tracking-widest">Founder</p>
+                <div className="flex items-center justify-center gap-8 flex-wrap">
+                  <div className="group hover-elevate rounded-xl p-3 transition-all duration-300">
+                    <img 
+                      src="/attached_assets/image_1763310394785.png" 
+                      alt="TagSkills EdTech" 
+                      className="h-14 object-contain group-hover:scale-110 transition-transform duration-300"
+                      data-testid="img-founder-tagskills"
+                    />
+                  </div>
+                  <div className="group hover-elevate rounded-xl p-3 transition-all duration-300">
+                    <img 
+                      src="/attached_assets/image_1763310692087.png" 
+                      alt="Invayas Technologies" 
+                      className="h-14 object-contain group-hover:scale-110 transition-transform duration-300"
+                      data-testid="img-founder-invayas"
+                    />
+                  </div>
+                  <div className="group hover-elevate rounded-xl p-3 transition-all duration-300">
+                    <img 
+                      src="/attached_assets/image_1763310816169.png" 
+                      alt="Frillory Design House" 
+                      className="h-14 object-contain group-hover:scale-110 transition-transform duration-300"
+                      data-testid="img-founder-frillory"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
