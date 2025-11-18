@@ -16,13 +16,13 @@ export default function BusinessListingsSection() {
   }, [selectedCategory]);
 
   return (
-    <section id="listings" className="py-20 lg:py-32">
+    <section id="listings" className="py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-foreground" data-testid="text-listings-title">
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight" data-testid="text-listings-title">
             EdTech & Business Partners
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed font-normal">
             Connect with leading EdTech companies, SAP partners, and training providers in our ecosystem
           </p>
         </div>

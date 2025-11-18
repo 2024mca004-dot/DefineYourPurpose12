@@ -33,12 +33,12 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-muted/30">
+    <section id="contact" className="py-12 lg:py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground" data-testid="text-contact-title">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight" data-testid="text-contact-title">
                 Let's Partner Together
               </h2>
               <p className="text-lg text-muted-foreground">
