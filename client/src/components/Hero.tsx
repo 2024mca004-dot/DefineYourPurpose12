@@ -45,7 +45,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-8 pt-6">
+            <div className="grid grid-cols-3 gap-8 pt-8">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Award className="w-8 h-8 text-primary" />
