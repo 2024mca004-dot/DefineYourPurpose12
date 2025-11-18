@@ -45,9 +45,10 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-8 pt-10">
+            <div className="grid grid-cols-3 gap-8 pt-6">
               <div className="space-y-3">
-                <div className="flex items-baseline gap-2">
+                <div className="flex items-center gap-2">
+                  <Award className="w-8 h-8 text-primary" />
                   <span className="text-4xl font-bold text-primary" data-testid="text-years">13+</span>
                 </div>
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Years Experience</p>
