@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-3 space-y-10">
             <div className="space-y-6">
-              <Badge variant="secondary" className="text-xs font-semibold tracking-widest uppercase px-4 py-1.5" data-testid="badge-role">
+              <Badge variant="secondary" className="text-xs font-semibold tracking-widest uppercase px-4 py-1.5 mt-6" data-testid="badge-role">
                 SAP S/4 HANA Mentor · Founder · Motivational Speaker
               </Badge>
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight tracking-tight" data-testid="text-name">
