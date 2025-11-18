@@ -10,7 +10,7 @@ export default function Hero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <section id="about" className="relative pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden bg-background">
+    <section id="about" className="relative pt-16 pb-12 lg:pt-20 lg:pb-16 overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-3 space-y-10">
