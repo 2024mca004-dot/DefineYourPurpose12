@@ -39,7 +39,7 @@ export default function Header() {
               </Button>
             </a>
             <a href="#pricing">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-6 py-5 text-base rounded-xl transition-all" data-testid="button-list-company">
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-6 text-base rounded-xl transition-all" data-testid="button-list-company">
                 List Your Company
               </Button>
             </a>
