@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Award, Users, TrendingUp } from "lucide-react";
 import heroImage from "@assets/image_1762091195476.png";
 
 export default function Hero() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <section id="about" className="relative pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -72,14 +76,18 @@ export default function Hero() {
 
           <div className="lg:col-span-2 space-y-6">
             <div className="relative flex justify-center">
-              <div className="aspect-square rounded-full overflow-hidden max-w-lg w-full shadow-2xl ring-4 ring-background">
+              <button
+                onClick={() => setIsDialogOpen(true)}
+                className="aspect-square rounded-full overflow-hidden max-w-lg w-full shadow-2xl ring-4 ring-background cursor-pointer hover:ring-primary/20 transition-all hover-elevate active-elevate-2"
+                data-testid="button-hero-photo"
+              >
                 <img
                   src={heroImage}
                   alt="Prashun Shetty"
                   className="w-full h-full object-cover"
                   data-testid="img-hero"
                 />
-              </div>
+              </button>
             </div>
             
             <div className="space-y-3">
@@ -108,6 +116,43 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <div className="flex flex-col items-center space-y-6 py-4">
+            <div className="aspect-square rounded-full overflow-hidden w-48 h-48 shadow-2xl ring-4 ring-background">
+              <img
+                src={heroImage}
+                alt="Prashun Shetty"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            <div className="space-y-4 w-full">
+              <h2 className="text-center text-sm font-bold text-muted-foreground uppercase tracking-widest">
+                Founder of
+              </h2>
+              <div className="flex items-center justify-center gap-6 flex-wrap">
+                <img 
+                  src="/attached_assets/image_1763310394785.png" 
+                  alt="TagSkills EdTech" 
+                  className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+                <img 
+                  src="/attached_assets/image_1763310692087.png" 
+                  alt="Invayas Technologies" 
+                  className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+                <img 
+                  src="/attached_assets/image_1763310816169.png" 
+                  alt="Frillory Design House" 
+                  className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
