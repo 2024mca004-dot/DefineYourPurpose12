@@ -28,12 +28,12 @@ export default function CompanyCard({ logo, name, tagline, description, website 
       
       <div className="space-y-3 text-center">
         <div>
-          <h3 className="text-xl font-semibold text-foreground mb-1" data-testid={`text-name-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+          <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2 tracking-tight" data-testid={`text-name-${name.toLowerCase().replace(/\s+/g, '-')}`}>
             {name}
           </h3>
-          <p className="text-sm text-muted-foreground font-medium">{tagline}</p>
+          <p className="text-sm text-muted-foreground font-medium tracking-wide">{tagline}</p>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 font-normal">
           {description}
         </p>
       </div>
