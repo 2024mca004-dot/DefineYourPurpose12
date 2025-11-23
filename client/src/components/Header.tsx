@@ -27,8 +27,8 @@ export default function Header() {
             <a href="#listings" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-listings">
               Business Listings
             </a>
-            <a href="#blog" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-blog">
-              SAP Insights
+            <a href="#videos" className="text-sm font-semibold text-foreground hover:text-primary transition-all px-4 py-2 rounded-lg hover-elevate" data-testid="link-videos">
+              Videos
             </a>
           </nav>
 
@@ -67,8 +67,8 @@ export default function Header() {
             <a href="#listings" className="block text-sm font-medium py-2" data-testid="link-mobile-listings">
               Business Listings
             </a>
-            <a href="#blog" className="block text-sm font-medium py-2" data-testid="link-mobile-blog">
-              SAP Insights
+            <a href="#videos" className="block text-sm font-medium py-2" data-testid="link-mobile-videos">
+              Videos
             </a>
             <div className="pt-4 space-y-3">
               <a href="#contact" className="block">

@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import CompaniesSection from "@/components/CompaniesSection";
 import BusinessListingsSection from "@/components/BusinessListingsSection";
 import PricingSection from "@/components/PricingSection";
-import BlogSection from "@/components/BlogSection";
+import YouTubeSection from "@/components/YouTubeSection";
 import ContactForm from "@/components/ContactForm";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
@@ -17,7 +17,7 @@ export default function Home() {
         <CompaniesSection />
         <BusinessListingsSection />
         <PricingSection />
-        <BlogSection />
+        <YouTubeSection />
         <ContactForm />
         <Newsletter />
       </main>

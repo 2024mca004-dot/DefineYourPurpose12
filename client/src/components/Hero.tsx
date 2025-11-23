@@ -39,13 +39,13 @@ export default function Hero() {
                   Explore Companies
                 </Button>
               </a>
-              <a href="#blog">
+              <a href="#videos">
                 <Button 
                   size="lg" 
                   className="bg-background text-foreground hover:bg-muted font-bold px-6 py-5 text-base rounded-xl border transition-all" 
-                  data-testid="button-read-insights"
+                  data-testid="button-watch-videos"
                 >
-                  Read SAP Insights
+                  Watch Videos
                 </Button>
               </a>
             </div>
