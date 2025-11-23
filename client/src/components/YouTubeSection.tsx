@@ -94,7 +94,7 @@ export default function YouTubeSection() {
             </Button>
           </a>
           <a 
-            href="mailto:prashunsshetty@gmail.com?subject=Collaboration%20Opportunity%20with%20Prashun%20Shetty&body=Dear%20Prashun%20Shetty,%0D%0A%0D%0AI%20hope%20this%20email%20finds%20you%20well.%0D%0A%0D%0AI%20am%20reaching%20out%20to%20explore%20potential%20collaboration%20opportunities%20with%20you%20and%20your%20companies%20(TagSkills%20EdTech,%20Invayas%20Technologies,%20and%20Frillory%20Design%20House).%0D%0A%0D%0AI%20would%20love%20to%20discuss%20how%20we%20can%20work%20together%20to%20create%20value%20and%20mutual%20success.%0D%0A%0D%0APlease%20let%20me%20know%20your%20availability%20for%20a%20brief%20conversation.%0D%0A%0D%0ABest%20regards,"
+            href="mailto:prashunsshetty@gmail.com?subject=Collaboration%20Opportunity&body=Hi%20Prashun,%0D%0A%0D%0AI%20would%20like%20to%20collaborate%20with%20you.%0D%0A%0D%0APlease%20let%20me%20know%20your%20availability.%0D%0A%0D%0AThank%20you!"
           >
             <Button 
               size="lg" 
