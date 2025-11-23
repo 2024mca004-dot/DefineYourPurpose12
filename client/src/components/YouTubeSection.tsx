@@ -13,21 +13,21 @@ interface YouTubeVideo {
 const videos: YouTubeVideo[] = [
   {
     id: "1",
-    videoId: "dQw4w9WgXcQ",
-    title: "SAP S/4HANA Implementation Success Stories",
-    description: "Learn how leading enterprises are transforming their business with SAP S/4HANA"
+    videoId: "yDv9oEKQDB0",
+    title: "SAP S/4HANA Expert Insights",
+    description: "Expert guidance and insights on SAP S/4HANA implementation and best practices"
   },
   {
     id: "2",
-    videoId: "dQw4w9WgXcQ",
-    title: "Mastering SAP Fiori - Complete Guide",
-    description: "Comprehensive tutorial on building modern SAP applications with Fiori"
+    videoId: "MvmIxplAixI",
+    title: "SAP Career Success Tips",
+    description: "Quick tips and strategies to accelerate your SAP career journey"
   },
   {
     id: "3",
-    videoId: "dQw4w9WgXcQ",
-    title: "Career Growth in SAP - Expert Insights",
-    description: "Tips and strategies to accelerate your SAP career journey"
+    videoId: "rdBVGsQv6c0",
+    title: "SAP Professional Growth",
+    description: "Learn how to grow as an SAP professional and achieve your career goals"
   }
 ];
 
