@@ -33,7 +33,12 @@ const videos: YouTubeVideo[] = [
 
 export default function YouTubeSection() {
   const handleCollaborate = () => {
-    window.location.href = "mailto:prashunsshetty@gmail.com?subject=Collaboration%20Opportunity&body=Hi%20Prashun,%0D%0A%0D%0AI%20would%20like%20to%20collaborate%20with%20you.%0D%0A%0D%0APlease%20let%20me%20know%20your%20availability.%0D%0A%0D%0AThank%20you!";
+    const email = "prashunsshetty@gmail.com";
+    const subject = "Collaboration Opportunity";
+    const body = "Hi Prashun,\n\nI would like to collaborate with you.\n\nPlease let me know your availability.\n\nThank you!";
+    
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(gmailUrl, '_blank');
   };
 
   return (
