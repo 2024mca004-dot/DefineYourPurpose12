@@ -32,6 +32,10 @@ const videos: YouTubeVideo[] = [
 ];
 
 export default function YouTubeSection() {
+  const handleCollaborate = () => {
+    window.location.href = "mailto:prashunsshetty@gmail.com?subject=Collaboration%20Opportunity&body=Hi%20Prashun,%0D%0A%0D%0AI%20would%20like%20to%20collaborate%20with%20you.%0D%0A%0D%0APlease%20let%20me%20know%20your%20availability.%0D%0A%0D%0AThank%20you!";
+  };
+
   return (
     <section id="videos" className="py-12 lg:py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -93,17 +97,14 @@ export default function YouTubeSection() {
               Visit TagSkills Channel
             </Button>
           </a>
-          <a 
-            href="mailto:prashunsshetty@gmail.com?subject=Collaboration%20Opportunity&body=Hi%20Prashun,%0D%0A%0D%0AI%20would%20like%20to%20collaborate%20with%20you.%0D%0A%0D%0APlease%20let%20me%20know%20your%20availability.%0D%0A%0D%0AThank%20you!"
+          <Button 
+            size="lg" 
+            onClick={handleCollaborate}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-6 text-base rounded-xl shadow-lg transition-all" 
+            data-testid="button-collaborate"
           >
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-6 text-base rounded-xl shadow-lg transition-all" 
-              data-testid="button-collaborate"
-            >
-              Collaborate
-            </Button>
-          </a>
+            Collaborate
+          </Button>
         </div>
       </div>
     </section>
