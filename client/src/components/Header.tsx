@@ -42,7 +42,7 @@ export default function Header() {
                 Partner With Us
               </Button>
             </a>
-            <a href="#pricing">
+            <a href="#pricing" className="-mt-1">
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold px-6 rounded-xl transition-all" data-testid="button-list-company">
                 List Your Company
               </Button>
