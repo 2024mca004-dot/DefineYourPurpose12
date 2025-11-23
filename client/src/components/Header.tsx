@@ -11,6 +11,10 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 hover-elevate active-elevate-2 px-3 py-2 rounded-md transition-all">
+            <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
+              <span className="text-lg lg:text-xl font-bold text-white">PS</span>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent"></div>
+            </div>
             <div className="font-bold text-xl lg:text-2xl text-foreground tracking-tight">
               <span className="text-primary">Prashun</span>{" "}
               <span className="text-foreground">Shetty</span>
