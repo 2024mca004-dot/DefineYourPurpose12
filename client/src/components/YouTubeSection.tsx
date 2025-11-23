@@ -79,35 +79,31 @@ export default function YouTubeSection() {
           ))}
         </div>
 
-        <div className="text-center mt-12 space-y-4">
-          <div>
-            <a 
-              href="https://www.youtube.com/@tagskills9749" 
-              target="_blank" 
-              rel="noopener noreferrer"
+        <div className="text-center mt-12 flex flex-wrap justify-center gap-4">
+          <a 
+            href="https://www.youtube.com/@tagskills9749" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <Button 
+              size="lg" 
+              className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-6 text-base rounded-xl shadow-lg transition-all" 
+              data-testid="button-visit-channel"
             >
-              <Button 
-                size="lg" 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-6 text-base rounded-xl shadow-lg transition-all" 
-                data-testid="button-visit-channel"
-              >
-                Visit TagSkills Channel
-              </Button>
-            </a>
-          </div>
-          <div>
-            <a 
-              href="mailto:prashunsshetty@gmail.com?subject=Collaboration Opportunity&body=Hello Prashun,%0D%0A%0D%0AI would like to collaborate with you."
+              Visit TagSkills Channel
+            </Button>
+          </a>
+          <a 
+            href="mailto:prashunsshetty@gmail.com?subject=Collaboration Opportunity&body=Hello Prashun,%0D%0A%0D%0AI would like to collaborate with you."
+          >
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-6 text-base rounded-xl shadow-lg transition-all" 
+              data-testid="button-collaborate"
             >
-              <Button 
-                size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-6 text-base rounded-xl shadow-lg transition-all" 
-                data-testid="button-collaborate"
-              >
-                Collaborate
-              </Button>
-            </a>
-          </div>
+              Collaborate
+            </Button>
+          </a>
         </div>
       </div>
     </section>
