@@ -61,7 +61,7 @@ export default function Hero() {
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Users className="w-8 h-8 text-primary" />
-                  <span className="text-4xl font-bold text-primary" data-testid="text-companies">3</span>
+                  <span className="text-4xl font-bold text-primary" data-testid="text-companies">3+</span>
                 </div>
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Companies Founded</p>
               </div>
