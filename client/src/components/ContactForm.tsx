@@ -22,7 +22,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
     
     // Create email content
-    const recipientEmail = "prashunsshetty@gmail.com";
+    const recipientEmail = "Prashunshetty@tagskills.com";
     const subject = `New Inquiry from ${formData.name}${formData.company ? ` - ${formData.company}` : ""}`;
     const body = `Hello Prashun,
 
@@ -75,7 +75,7 @@ This message was sent via the DefineYourPurpose contact form.`;
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <p className="text-sm text-muted-foreground">prashunsshetty@gmail.com</p>
+                    <p className="text-sm text-muted-foreground">Prashunshetty@tagskills.com</p>
                   </div>
                 </div>
               </Card>
