@@ -12,7 +12,7 @@ export default function Newsletter() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate submission
     setTimeout(() => {
       toast({
@@ -34,11 +34,15 @@ export default function Newsletter() {
                 <Mail className="w-8 h-8" />
               </div>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold" data-testid="text-newsletter-title">
+            <h2
+              className="text-3xl lg:text-4xl font-bold"
+              data-testid="text-newsletter-title"
+            >
               Stay Updated with SAP Innovations
             </h2>
             <p className="text-lg opacity-90">
-              Get weekly insights on SAP S/4HANA, career growth tips, and industry trends delivered to your inbox
+              Get weekly insights on SAP S/4HANA, career growth tips, and
+              industry trends delivered to your inbox
             </p>
           </div>
 
