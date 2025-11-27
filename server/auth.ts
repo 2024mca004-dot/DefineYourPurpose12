@@ -5,9 +5,7 @@ import session from "express-session";
 import createMemoryStore from "memorystore";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
-import { users, type User as SelectUser } from "@shared/schema";
-import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { type User as SelectUser } from "@shared/schema";
 
 const scryptAsync = promisify(scrypt);
 const crypto = {
@@ -27,6 +25,35 @@ const crypto = {
     return timingSafeEqual(hashedPasswordBuf, suppliedPasswordBuf);
   },
 };
+
+// In-memory user storage for portability
+const inMemoryUsers: Map<number, SelectUser> = new Map();
+let userIdCounter = 1;
+
+async function findUserByUsername(username: string): Promise<SelectUser | undefined> {
+  const users = Array.from(inMemoryUsers.values());
+  for (const user of users) {
+    if (user.username === username) {
+      return user;
+    }
+  }
+  return undefined;
+}
+
+async function findUserById(id: number): Promise<SelectUser | undefined> {
+  return inMemoryUsers.get(id);
+}
+
+async function createUser(username: string, hashedPassword: string): Promise<SelectUser> {
+  const user: SelectUser = {
+    id: userIdCounter++,
+    username,
+    password: hashedPassword,
+    createdAt: new Date(),
+  };
+  inMemoryUsers.set(user.id, user);
+  return user;
+}
 
 declare global {
   namespace Express {
@@ -60,11 +87,7 @@ export function setupAuth(app: Express) {
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        const [user] = await db
-          .select()
-          .from(users)
-          .where(eq(users.username, username))
-          .limit(1);
+        const user = await findUserByUsername(username);
 
         if (!user) {
           return done(null, false, { message: "Incorrect username." });
@@ -86,14 +109,69 @@ export function setupAuth(app: Express) {
 
   passport.deserializeUser(async (id: number, done) => {
     try {
-      const [user] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, id))
-        .limit(1);
+      const user = await findUserById(id);
       done(null, user);
     } catch (err) {
       done(err);
+    }
+  });
+
+  // Registration endpoint
+  app.post("/api/auth/register", async (req, res, next) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: "Username and password required" });
+      }
+
+      const existingUser = await findUserByUsername(username);
+      if (existingUser) {
+        return res.status(400).json({ message: "Username already exists" });
+      }
+
+      const hashedPassword = await crypto.hash(password);
+      const user = await createUser(username, hashedPassword);
+
+      req.login(user, (err) => {
+        if (err) return next(err);
+        res.json({ id: user.id, username: user.username });
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  // Login endpoint
+  app.post("/api/auth/login", (req, res, next) => {
+    passport.authenticate("local", (err: any, user: SelectUser | false, info: any) => {
+      if (err) return next(err);
+      if (!user) {
+        return res.status(401).json({ message: info?.message || "Login failed" });
+      }
+      req.login(user, (err) => {
+        if (err) return next(err);
+        res.json({ id: user.id, username: user.username });
+      });
+    })(req, res, next);
+  });
+
+  // Logout endpoint
+  app.post("/api/auth/logout", (req, res) => {
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Logout failed" });
+      }
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+
+  // Get current user
+  app.get("/api/auth/user", (req, res) => {
+    if (req.isAuthenticated()) {
+      res.json({ id: req.user.id, username: req.user.username });
+    } else {
+      res.status(401).json({ message: "Not authenticated" });
     }
   });
 }

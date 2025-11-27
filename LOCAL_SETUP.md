@@ -1,33 +1,37 @@
 # Running DefineYourPurpose Locally (Outside Replit)
 
-This guide helps you run the project on your local machine (Windows/Mac/Linux).
+This guide helps you run the project on your local machine (Windows/Mac/Linux) after cloning from GitHub.
 
 ## Prerequisites
 
-- **Node.js 20.11+** (required for `import.meta.dirname`)
-- **npm** or **yarn**
+- **Node.js 18+** (Node.js 20+ recommended)
+- **npm** (comes with Node.js)
 
 ## Quick Start
 
-### 1. Install Dependencies
+### 1. Clone and Install
 
 ```bash
+git clone <your-repo-url>
+cd DefineYourPurpose
 npm install
 ```
 
 ### 2. Run the Application
 
-**Option A: Use the local Vite config (Recommended)**
-
+**Run Frontend (Terminal 1):**
 ```bash
-# Start frontend only
 npx vite --config vite.config.local.ts
+```
 
-# In another terminal, start backend
+**Run Backend (Terminal 2):**
+```bash
 npx tsx server/index.ts
 ```
 
-**Option B: Modify package.json scripts**
+The frontend will run at `http://localhost:5173` and the backend at `http://localhost:5000`.
+
+## Alternative: Single Command Setup
 
 Add these scripts to your `package.json`:
 
@@ -41,74 +45,80 @@ Add these scripts to your `package.json`:
 }
 ```
 
-Then run:
+Then install concurrently and run:
 ```bash
+npm install concurrently
 npm run dev:local
+```
+
+## Features
+
+This project uses **in-memory storage** by default:
+- No database setup required
+- All data (companies, plans, leads) is pre-loaded
+- Data resets when server restarts (perfect for demos)
+
+## Optional: Persistent Database
+
+If you want data to persist between restarts:
+
+1. Create a free PostgreSQL database at [Neon](https://neon.tech) or [Supabase](https://supabase.com)
+
+2. Create a `.env` file:
+```env
+DATABASE_URL=postgresql://user:password@host:5432/database
+```
+
+3. The app will automatically use the database when `DATABASE_URL` is set
+
+## Optional: Stripe Payments
+
+To enable payment processing:
+
+1. Get API keys from [Stripe Dashboard](https://dashboard.stripe.com)
+
+2. Add to your `.env` file:
+```env
+STRIPE_SECRET_KEY=sk_test_...
+VITE_STRIPE_PUBLIC_KEY=pk_test_...
 ```
 
 ## Troubleshooting
 
-### Error: "Failed to resolve import @/components/ui/..."
+### "Failed to resolve import @/components/ui/..."
 
-This means the path aliases aren't working. Use the `vite.config.local.ts` file:
-
+Use the local Vite config:
 ```bash
 npx vite --config vite.config.local.ts
 ```
 
-### Error: "import.meta.dirname is not defined"
+### "Cannot find module '@replit/...'"
 
-Your Node.js version is too old. Update to Node.js 20.11 or newer:
+These are Replit-specific packages. The `vite.config.local.ts` file doesn't use them.
 
-```bash
-node --version  # Should be v20.11.0 or higher
-```
+### "DATABASE_URL environment variable is required"
 
-### Error: "Cannot find module '@replit/...'"
-
-These are Replit-specific packages. Use `vite.config.local.ts` which doesn't require them.
-
-### Database Not Working
-
-This project uses **in-memory storage** by default, so no database setup is required. Data will reset when the server restarts.
-
-If you want persistent data, you can:
-1. Set up a PostgreSQL database (e.g., using Neon, Supabase, or local PostgreSQL)
-2. Set the `DATABASE_URL` environment variable
-3. Update `server/storage.ts` to use `DbStorage` instead of `MemStorage`
-
-## Environment Variables (Optional)
-
-Create a `.env` file in the root directory:
-
-```env
-# Only needed if you want Stripe payments
-STRIPE_SECRET_KEY=your_stripe_secret_key
-VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
-
-# Only needed if using database (optional)
-DATABASE_URL=postgresql://user:password@host:5432/database
-```
+This error should not occur with the latest version. If it does, make sure you pulled the latest code that uses in-memory storage.
 
 ## Project Structure
 
 ```
 DefineYourPurpose/
-├── client/           # React frontend
+├── client/               # React frontend
 │   └── src/
-│       ├── components/
-│       ├── pages/
-│       └── App.tsx
-├── server/           # Express backend
-│   ├── index.ts
-│   ├── routes.ts
-│   └── storage.ts    # In-memory data storage
-├── shared/           # Shared types
-├── attached_assets/  # Images and assets
-├── vite.config.ts    # Replit Vite config
-└── vite.config.local.ts  # Local Vite config (use this locally)
+│       ├── components/   # UI components
+│       ├── pages/        # Page components
+│       └── App.tsx       # Main app
+├── server/               # Express backend
+│   ├── index.ts          # Server entry
+│   ├── routes.ts         # API routes
+│   └── storage.ts        # In-memory data
+├── shared/               # Shared TypeScript types
+├── attached_assets/      # Images and logos
+├── vite.config.ts        # Replit config (don't use locally)
+└── vite.config.local.ts  # Local config (use this!)
 ```
 
-## Need Help?
+## Contact
 
-Contact: prashunsshetty@gmail.com
+Questions? Contact: prashunsshetty@gmail.com
