@@ -3,11 +3,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Award, Users, TrendingUp } from "lucide-react";
+import { Award, Users, TrendingUp, Calendar } from "lucide-react";
 import heroImage from "@assets/image_1762091195476.png";
 
 export default function Hero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleBookMeeting = () => {
+    const email = "Prashunshetty@tagskills.com";
+    const subject = "Meeting Request - Consultation with Prashun Shetty";
+    const body = `Hi Prashun,
+
+I would like to schedule a meeting with you to discuss potential opportunities.
+
+Please let me know your available time slots.
+
+Thank you!`;
+    
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(gmailUrl, '_blank');
+  };
 
   return (
     <section id="about" className="relative pt-24 pb-12 lg:pt-28 lg:pb-16 overflow-hidden bg-background">
@@ -30,24 +45,15 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <a href="#companies">
-                <Button 
-                  size="lg" 
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-6 py-5 text-base rounded-xl transition-all" 
-                  data-testid="button-explore-companies"
-                >
-                  Explore Companies
-                </Button>
-              </a>
-              <a href="#videos">
-                <Button 
-                  size="lg" 
-                  className="bg-background text-foreground hover:bg-muted font-bold px-6 py-5 text-base rounded-xl border transition-all" 
-                  data-testid="button-watch-videos"
-                >
-                  Watch Videos
-                </Button>
-              </a>
+              <Button 
+                size="lg" 
+                onClick={handleBookMeeting}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-5 text-base rounded-xl transition-all" 
+                data-testid="button-book-meeting"
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                Book a Meeting
+              </Button>
             </div>
 
             <div className="grid grid-cols-3 gap-8 pt-8">

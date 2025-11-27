@@ -33,7 +33,7 @@ const videos: YouTubeVideo[] = [
 
 export default function YouTubeSection() {
   const handleCollaborate = () => {
-    const email = "prashunsshetty@gmail.com";
+    const email = "Prashunshetty@tagskills.com";
     const subject = "Collaboration Opportunity";
     const body = "Hi Prashun,\n\nI would like to collaborate with you.\n\nPlease let me know your availability.\n\nThank you!";
     

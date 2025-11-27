@@ -12,7 +12,7 @@ interface CompanyCardProps {
 
 export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
   const handleCollaborate = () => {
-    const email = "prashunsshetty@gmail.com";
+    const email = "Prashunshetty@tagskills.com";
     const subject = `Collaboration Inquiry - ${name}`;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
     window.open(gmailUrl, '_blank');

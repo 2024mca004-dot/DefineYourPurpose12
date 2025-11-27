@@ -41,7 +41,7 @@ export default function Footer() {
                 <Youtube className="w-4 h-4" />
               </a>
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=prashunsshetty@gmail.com&su=Contact%20Inquiry"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=Prashunshetty@tagskills.com&su=Contact%20Inquiry"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-md bg-muted hover-elevate active-elevate-2 flex items-center justify-center"
