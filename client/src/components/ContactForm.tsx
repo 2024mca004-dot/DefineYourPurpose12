@@ -21,15 +21,35 @@ export default function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. We'll get back to you soon.",
-      });
-      setFormData({ name: "", email: "", company: "", message: "" });
-      setIsSubmitting(false);
-    }, 500);
+    // Create email content
+    const recipientEmail = "prashunsshetty@gmail.com";
+    const subject = `New Inquiry from ${formData.name}${formData.company ? ` - ${formData.company}` : ""}`;
+    const body = `Hello Prashun,
+
+You have received a new inquiry from your website:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "Not specified"}
+
+Message:
+${formData.message}
+
+---
+This message was sent via the DefineYourPurpose contact form.`;
+
+    // Open Gmail with pre-filled email
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.open(gmailUrl, "_blank");
+    
+    toast({
+      title: "Email ready to send!",
+      description: "Gmail has opened with your message. Please click 'Send' to complete.",
+    });
+    
+    setFormData({ name: "", email: "", company: "", message: "" });
+    setIsSubmitting(false);
   };
 
   return (
