@@ -70,7 +70,92 @@ export class MemStorage implements IStorage {
     }
   ];
 
-  private businessListings: schema.BusinessListing[] = [];
+  private businessListings: schema.BusinessListing[] = [
+    {
+      id: 1,
+      name: "SAP Academy Pro",
+      category: "EdTech",
+      description: "Premier SAP training institute offering certified courses in S/4HANA, Fiori, and BTP with 95% placement rate.",
+      banner: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&q=80",
+      contactEmail: "contact@sapacademypro.com",
+      website: "https://sapacademypro.com",
+      isFeatured: true,
+      isActive: true,
+      planId: 2,
+      expiresAt: null
+    },
+    {
+      id: 2,
+      name: "TechCorp Solutions",
+      category: "SAP Partner",
+      description: "Gold SAP partner specializing in end-to-end S/4HANA implementations for enterprise clients globally.",
+      banner: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+      logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&q=80",
+      contactEmail: "info@techcorpsolutions.com",
+      website: "https://techcorpsolutions.com",
+      isFeatured: true,
+      isActive: true,
+      planId: 3,
+      expiresAt: null
+    },
+    {
+      id: 3,
+      name: "Digital Skills Hub",
+      category: "Training",
+      description: "Comprehensive online and offline SAP training programs with hands-on projects and industry mentorship.",
+      banner: "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
+      logo: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=200&q=80",
+      contactEmail: "hello@digitalskillshub.com",
+      website: "https://digitalskillshub.com",
+      isFeatured: false,
+      isActive: true,
+      planId: 1,
+      expiresAt: null
+    },
+    {
+      id: 4,
+      name: "SAP Talent Connect",
+      category: "Recruitment",
+      description: "Specialized recruitment agency connecting SAP professionals with top companies across India and abroad.",
+      banner: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
+      logo: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=200&q=80",
+      contactEmail: "careers@saptalentconnect.com",
+      website: "https://saptalentconnect.com",
+      isFeatured: false,
+      isActive: true,
+      planId: 2,
+      expiresAt: null
+    },
+    {
+      id: 5,
+      name: "Enterprise Learning Portal",
+      category: "EdTech",
+      description: "AI-powered learning platform for SAP professionals with personalized course recommendations and certifications.",
+      banner: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80",
+      logo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&q=80",
+      contactEmail: "support@enterpriselearning.com",
+      website: "https://enterpriselearning.com",
+      isFeatured: true,
+      isActive: true,
+      planId: 2,
+      expiresAt: null
+    },
+    {
+      id: 6,
+      name: "CloudBridge Consulting",
+      category: "SAP Partner",
+      description: "SAP BTP specialists helping organizations build cloud-native applications and migrate to SAP Cloud.",
+      banner: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80",
+      logo: "https://images.unsplash.com/photo-1553484771-371a605b060b?w=200&q=80",
+      contactEmail: "contact@cloudbridge.com",
+      website: "https://cloudbridge.com",
+      isFeatured: false,
+      isActive: true,
+      planId: 1,
+      expiresAt: null
+    }
+  ];
   private blogPosts: schema.BlogPost[] = [];
   private leads: schema.Lead[] = [];
   private newsletterSubscribers: schema.NewsletterSubscriber[] = [];
@@ -114,7 +199,7 @@ export class MemStorage implements IStorage {
   async createNewsletterSubscriber(subscriber: schema.InsertNewsletterSubscriber): Promise<schema.NewsletterSubscriber> {
     const existingSubscriber = this.newsletterSubscribers.find(s => s.email === subscriber.email);
     if (existingSubscriber) {
-      return existingSubscriber;
+      throw new Error("unique constraint violation: email already subscribed");
     }
     
     const newSubscriber: schema.NewsletterSubscriber = {

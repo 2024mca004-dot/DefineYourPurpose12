@@ -1,7 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import CompanyCard from "./CompanyCard";
-import { companies } from "@/data/companies";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { Company } from "@shared/schema";
 
 export default function CompaniesSection() {
+  const { data: companies, isLoading } = useQuery<Company[]>({
+    queryKey: ["/api/companies"],
+  });
+
   return (
     <section id="companies" className="py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -15,13 +21,21 @@ export default function CompaniesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {companies.map((company) => (
-            <CompanyCard 
-              key={company.id} 
-              {...company}
-              website={company.website || undefined}
-            />
-          ))}
+          {isLoading ? (
+            <>
+              <Skeleton className="h-80 rounded-lg" />
+              <Skeleton className="h-80 rounded-lg" />
+              <Skeleton className="h-80 rounded-lg" />
+            </>
+          ) : (
+            companies?.map((company) => (
+              <CompanyCard 
+                key={company.id} 
+                {...company}
+                website={company.website || undefined}
+              />
+            ))
+          )}
         </div>
       </div>
     </section>

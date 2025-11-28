@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function ContactForm() {
   const { toast } = useToast();
@@ -15,16 +17,22 @@ export default function ContactForm() {
     company: "",
     message: ""
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Create email content
-    const recipientEmail = "Prashunshetty@tagskills.com";
-    const subject = `New Inquiry from ${formData.name}${formData.company ? ` - ${formData.company}` : ""}`;
-    const body = `Hello Prashun,
+  const createLeadMutation = useMutation({
+    mutationFn: async (data: { name: string; email: string; company: string; message: string }) => {
+      const response = await apiRequest("POST", "/api/leads", {
+        name: data.name,
+        email: data.email,
+        company: data.company || null,
+        message: data.message,
+        source: "contact_form"
+      });
+      return response.json();
+    },
+    onSuccess: () => {
+      const recipientEmail = "Prashunshetty@tagskills.com";
+      const subject = `New Inquiry from ${formData.name}${formData.company ? ` - ${formData.company}` : ""}`;
+      const body = `Hello Prashun,
 
 You have received a new inquiry from your website:
 
@@ -38,18 +46,28 @@ ${formData.message}
 ---
 This message was sent via the DefineYourPurpose contact form.`;
 
-    // Open Gmail with pre-filled email
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    window.open(gmailUrl, "_blank");
-    
-    toast({
-      title: "Email ready to send!",
-      description: "Gmail has opened with your message. Please click 'Send' to complete.",
-    });
-    
-    setFormData({ name: "", email: "", company: "", message: "" });
-    setIsSubmitting(false);
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(gmailUrl, "_blank");
+      
+      toast({
+        title: "Message sent!",
+        description: "Your inquiry has been saved. Gmail has opened for direct contact.",
+      });
+      
+      setFormData({ name: "", email: "", company: "", message: "" });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to save your message. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    createLeadMutation.mutate(formData);
   };
 
   return (
@@ -160,10 +178,10 @@ This message was sent via the DefineYourPurpose contact form.`;
               <Button
                 type="submit"
                 className="w-full"
-                disabled={isSubmitting}
+                disabled={createLeadMutation.isPending}
                 data-testid="button-send"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {createLeadMutation.isPending ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Card>

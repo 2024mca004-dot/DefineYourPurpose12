@@ -1,19 +1,26 @@
 import { useState, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import BusinessListingCard from "./BusinessListingCard";
 import { Button } from "@/components/ui/button";
-import { businessListings } from "@/data/businessListings";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { BusinessListing } from "@shared/schema";
 
 const categories = ["All", "EdTech", "SAP Partner", "Training", "Recruitment"];
 
 export default function BusinessListingsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const { data: businessListings, isLoading } = useQuery<BusinessListing[]>({
+    queryKey: ["/api/listings"],
+  });
+
   const filteredListings = useMemo(() => {
+    if (!businessListings) return [];
     if (selectedCategory === "All") {
       return businessListings;
     }
     return businessListings.filter(listing => listing.category === selectedCategory);
-  }, [selectedCategory]);
+  }, [selectedCategory, businessListings]);
 
   return (
     <section id="listings" className="py-12 lg:py-16">
@@ -41,7 +48,13 @@ export default function BusinessListingsSection() {
           ))}
         </div>
 
-        {filteredListings.length > 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <Skeleton className="h-72 rounded-lg" />
+            <Skeleton className="h-72 rounded-lg" />
+            <Skeleton className="h-72 rounded-lg" />
+          </div>
+        ) : filteredListings.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredListings.map((listing) => (
               <BusinessListingCard

@@ -1,27 +1,47 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Mail } from "lucide-react";
+import { apiRequest, ApiError } from "@/lib/queryClient";
 
 export default function Newsletter() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate submission
-    setTimeout(() => {
+  const subscribeMutation = useMutation({
+    mutationFn: async (email: string) => {
+      const response = await apiRequest("POST", "/api/newsletter", { email });
+      return response.json();
+    },
+    onSuccess: () => {
       toast({
         title: "Subscribed!",
         description: "You'll receive our weekly SAP insights and updates.",
       });
       setEmail("");
-      setIsSubmitting(false);
-    }, 500);
+    },
+    onError: (error: Error) => {
+      if (error instanceof ApiError && error.status === 409) {
+        toast({
+          title: "Already subscribed!",
+          description: "This email is already in our newsletter list.",
+        });
+        setEmail("");
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to subscribe. Please try again.",
+          variant: "destructive",
+        });
+      }
+    }
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    subscribeMutation.mutate(email);
   };
 
   return (
@@ -54,7 +74,7 @@ export default function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                disabled={isSubmitting}
+                disabled={subscribeMutation.isPending}
                 className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
                 data-testid="input-newsletter-email"
               />
@@ -62,10 +82,10 @@ export default function Newsletter() {
                 type="submit"
                 variant="secondary"
                 className="flex-shrink-0"
-                disabled={isSubmitting}
+                disabled={subscribeMutation.isPending}
                 data-testid="button-subscribe"
               >
-                {isSubmitting ? "..." : "Subscribe"}
+                {subscribeMutation.isPending ? "..." : "Subscribe"}
               </Button>
             </div>
             <p className="text-xs opacity-75 mt-3">
