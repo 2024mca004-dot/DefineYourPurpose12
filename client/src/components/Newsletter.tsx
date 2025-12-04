@@ -13,7 +13,7 @@ export default function Newsletter() {
   const subscribeMutation = useMutation({
     mutationFn: async (email: string) => {
       const response = await apiRequest("POST", "/api/newsletter", { email });
-      return response.json();
+      return response.data;
     },
     onSuccess: () => {
       toast({

@@ -56,10 +56,11 @@ client/
 
 ## How It Works
 
-1. **Data Fetching:** Uses React Query to fetch from `/api/*` endpoints
+1. **Data Fetching:** Uses React Query + Axios to fetch from `/api/*` endpoints
 2. **Routing:** Uses Wouter for client-side navigation
 3. **Styling:** Tailwind CSS with shadcn/ui component library
 4. **State:** React Query handles server state, React hooks for local state
+5. **HTTP Client:** Axios for all API requests (configured in `lib/queryClient.ts`)
 
 ---
 

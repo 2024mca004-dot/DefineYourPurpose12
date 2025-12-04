@@ -73,7 +73,7 @@ npm run dev
 **Frontend:**
 - React 18 with TypeScript
 - Tailwind CSS + shadcn/ui components
-- React Query for data fetching
+- React Query + Axios for data fetching
 - Wouter for routing
 
 **Backend:**

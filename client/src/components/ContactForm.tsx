@@ -27,7 +27,7 @@ export default function ContactForm() {
         message: data.message,
         source: "contact_form"
       });
-      return response.json();
+      return response.data;
     },
     onSuccess: () => {
       const recipientEmail = "Prashunshetty@tagskills.com";
