@@ -22,6 +22,12 @@ Preferred communication style: Simple, everyday language.
 
 **State Management**: React Query (TanStack Query) handles all server state management, data fetching, caching, and synchronization. Local component state uses React hooks.
 
+**HTTP Client**: Axios is used for all API requests. The axios instance is configured in `client/src/lib/queryClient.ts` with:
+- Base URL configuration
+- Credentials included for session cookies
+- Custom `ApiError` class for error handling with HTTP status codes
+- Integration with React Query for automatic data fetching
+
 **Routing**: Wouter is used for client-side routing, providing a lightweight alternative to React Router. Routes include Home (`/`), Checkout (`/checkout`), Success (`/success`), and a 404 page.
 
 **Design Principles**: 
