@@ -48,6 +48,8 @@ A full-stack web application for personal branding and business listing marketpl
 ├── 📁 attached_assets/           # Images & uploaded files
 │
 └── 📄 Config Files
+    ├── config.js                 # Main configuration (all settings)
+    ├── config.ts                 # TypeScript version of config
     ├── package.json              # Dependencies & npm scripts
     ├── tsconfig.json             # TypeScript configuration
     ├── vite.config.ts            # Vite bundler config
