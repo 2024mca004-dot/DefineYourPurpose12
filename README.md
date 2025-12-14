@@ -1,80 +1,51 @@
-# Prashun Shetty - Personal Branding & Business Marketplace Platform
+# Prashun Shetty Portfolio Website
 
-A full-stack web application for personal branding and business listing marketplace featuring three companies (TagSkills EdTech, Invayas Technologies, Frillory Design House), subscription-based business listings, lead generation, and Stripe payment integration.
-
----
-
-## Project Structure
-
-```
-📁 ROOT
-│
-├── 📁 client/                    # FRONTEND (React + TypeScript)
-│   ├── 📁 src/
-│   │   ├── 📁 components/        # React UI components
-│   │   │   ├── 📁 ui/            # Base components (Button, Card, Input, etc.)
-│   │   │   ├── Header.tsx        # Navigation header with logo
-│   │   │   ├── Footer.tsx        # Page footer with links
-│   │   │   ├── Hero.tsx          # Hero banner section
-│   │   │   ├── CompaniesSection.tsx
-│   │   │   ├── PricingSection.tsx
-│   │   │   ├── BusinessListingsSection.tsx
-│   │   │   ├── ContactForm.tsx
-│   │   │   ├── Newsletter.tsx
-│   │   │   └── YouTubeSection.tsx
-│   │   ├── 📁 pages/             # Page components
-│   │   │   ├── Home.tsx          # Main landing page
-│   │   │   └── not-found.tsx     # 404 error page
-│   │   ├── 📁 hooks/             # Custom React hooks
-│   │   ├── 📁 lib/               # Utilities & API client (Axios)
-│   │   ├── App.tsx               # Main app with routing
-│   │   ├── main.tsx              # React entry point
-│   │   └── index.css             # Global styles (Tailwind)
-│   ├── 📁 public/                # Static assets
-│   └── index.html                # HTML template
-│
-├── 📁 server/                    # BACKEND (Express + TypeScript)
-│   ├── index.ts                  # Server entry point (port 5000)
-│   ├── routes.ts                 # All API endpoints
-│   ├── storage.ts                # Data layer with seed data
-│   ├── auth.ts                   # Authentication (Passport.js)
-│   ├── db.ts                     # PostgreSQL connection
-│   ├── seed.ts                   # Database seeding
-│   └── vite.ts                   # Dev server integration
-│
-├── 📁 shared/                    # SHARED (Frontend + Backend)
-│   └── schema.ts                 # Database schema & TypeScript types
-│
-├── 📁 attached_assets/           # Images & uploaded files
-│
-└── 📄 Config Files
-    ├── config.js                 # Main configuration (all settings)
-    ├── config.ts                 # TypeScript version of config
-    ├── package.json              # Dependencies & npm scripts
-    ├── tsconfig.json             # TypeScript configuration
-    ├── vite.config.ts            # Vite bundler config
-    ├── tailwind.config.ts        # Tailwind CSS config
-    └── drizzle.config.ts         # Database ORM config
-```
+Personal Branding & Business Marketplace Platform for SAP S/4 HANA Mentor and Entrepreneur.
 
 ---
 
-## Quick Start
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Quick Start (Replit)](#quick-start-replit)
+  - [Frontend Setup](#frontend-setup)
+  - [Backend Setup](#backend-setup)
+- [Scripts](#scripts)
+- [Environment Variables](#environment-variables)
+- [Folder Breakdown](#folder-breakdown)
+- [API Documentation](#api-documentation)
+- [Design Guidelines](#design-guidelines)
+- [Future Enhancements](#future-enhancements)
+- [License](#license)
 
-### On Replit
-Click **"Run"** - everything is pre-configured!
+---
 
-### Local Development
-```bash
-# Install dependencies
-npm install
+## Overview
 
-# Start development server
-npm run dev
+This is a full-stack web application serving as a personal branding platform for Prashun Shetty. The platform showcases three main companies:
 
-# Open in browser
-http://localhost:5000
-```
+1. **TagSkills EdTech** - SAP Training & Professional Development
+2. **Invayas Technologies** - SAP S/4HANA Implementations  
+3. **Frillory Design House** - Brand Identity & UI/UX Design
+
+It also functions as a marketplace for EdTech and business partners to list their companies through paid subscription plans.
+
+---
+
+## Features
+
+- **Personal Branding** - Showcase companies with logos & descriptions
+- **Business Marketplace** - Partners can list their companies
+- **Subscription Plans** - 3 tiers (₹2,000 / ₹5,000 / ₹10,000)
+- **Lead Generation** - Contact forms save to database + open Gmail
+- **Newsletter** - Email subscription with duplicate detection
+- **YouTube Integration** - Embedded TagSkills videos
+- **Stripe Payments** - Subscription checkout flow
+- **Responsive Design** - Works on mobile, tablet, desktop
+- **Dark Mode** - Automatic theme switching
 
 ---
 
@@ -83,75 +54,206 @@ http://localhost:5000
 | Layer | Technology |
 |-------|------------|
 | **Frontend** | React 18, TypeScript, Vite |
-| **Styling** | Tailwind CSS, shadcn/ui components |
-| **HTTP Client** | Axios (configured in `client/src/lib/queryClient.ts`) |
-| **State Management** | React Query (TanStack Query) |
+| **Styling** | Tailwind CSS, shadcn/ui |
+| **HTTP Client** | Axios |
+| **State** | React Query (TanStack) |
 | **Routing** | Wouter |
 | **Backend** | Express.js, TypeScript |
-| **Database** | PostgreSQL with Drizzle ORM |
+| **Database** | PostgreSQL, Drizzle ORM |
 | **Payments** | Stripe |
-| **Authentication** | Passport.js |
+| **Auth** | Passport.js |
 
 ---
 
-## API Endpoints
+## Project Structure
+
+```
+📁 Prashun-Shetty-Portfolio
+│
+├── 📁 apps/                          # Application code
+│   ├── 📁 client/                    # FRONTEND (React)
+│   │   ├── public/
+│   │   └── src/
+│   │       ├── components/
+│   │       │   ├── ui/               # shadcn UI library
+│   │       │   ├── common/           # Header, Footer, Hero, Newsletter
+│   │       │   ├── sections/         # Page sections (Pricing, Companies, etc.)
+│   │       │   └── cards/            # Card components
+│   │       ├── hooks/                # Custom React hooks
+│   │       ├── data/                 # Static data (legacy)
+│   │       ├── pages/                # Route pages
+│   │       ├── lib/                  # Utilities & API client
+│   │       ├── App.tsx
+│   │       └── main.tsx
+│   │
+│   ├── 📁 server/                    # BACKEND (Express)
+│   │   └── src/
+│   │       ├── routes/               # API route handlers
+│   │       ├── middlewares/          # Auth & middleware
+│   │       ├── controllers/          # Request handlers
+│   │       ├── services/             # Business logic & storage
+│   │       ├── models/               # Database models
+│   │       ├── utils/                # Helper functions
+│   │       └── index.ts              # Server entry point
+│   │
+│   └── 📁 shared/                    # Shared code
+│       └── schema.ts                 # Database schema & types
+│
+├── 📁 packages/                      # Reusable modules
+│   ├── config/                       # Configuration files
+│   └── types/                        # TypeScript types
+│
+├── 📁 assets/                        # Media files
+│   ├── images/                       # Logos, banners
+│   ├── generated/                    # AI-generated images
+│   ├── screenshots/                  # App screenshots
+│   └── notes/                        # Text notes
+│
+├── 📁 docs/                          # Documentation
+│   ├── design_guidelines.md
+│   ├── LOCAL_SETUP.md
+│   ├── FRONTEND-ONLY-SETUP.md
+│   └── architecture.md
+│
+├── package.json                      # Dependencies
+├── tsconfig.json                     # TypeScript config
+├── tailwind.config.ts                # Tailwind config
+├── vite.config.ts                    # Vite bundler
+└── pnpm-workspace.yaml               # Monorepo workspace
+```
+
+---
+
+## Getting Started
+
+### Quick Start (Replit)
+Click **"Run"** - everything is pre-configured!
+
+### Frontend Setup
+```bash
+cd apps/client
+npm install
+npm run dev
+```
+
+### Backend Setup
+```bash
+cd apps/server
+npm install
+npm run dev
+```
+
+### Full Stack (Monorepo)
+```bash
+# Install all dependencies
+pnpm install
+
+# Run both frontend and backend
+pnpm dev
+```
+
+---
+
+## Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run db:push` | Push database schema |
+| `npm run db:studio` | Open database GUI |
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | Yes | PostgreSQL connection string |
+| `SESSION_SECRET` | Yes | Session encryption key |
+| `STRIPE_SECRET_KEY` | Yes | Stripe API secret |
+| `VITE_STRIPE_PUBLIC_KEY` | Yes | Stripe publishable key |
+| `NODE_ENV` | No | `development` or `production` |
+
+---
+
+## Folder Breakdown
+
+### `/apps/client` - Frontend
+| Folder | Contents |
+|--------|----------|
+| `components/ui/` | shadcn/ui base components (Button, Card, Input, etc.) |
+| `components/common/` | Header, Footer, Hero, Newsletter |
+| `components/sections/` | CompaniesSection, PricingSection, ContactForm |
+| `components/cards/` | CompanyCard, PricingCard, BlogPostCard |
+| `pages/` | Home, NotFound |
+| `lib/` | Axios client, utilities |
+| `hooks/` | useToast, useMobile |
+
+### `/apps/server` - Backend
+| Folder | Contents |
+|--------|----------|
+| `routes/` | API endpoint definitions |
+| `middlewares/` | Authentication, error handling |
+| `services/` | Business logic, storage |
+| `models/` | Database connection |
+| `utils/` | Helper functions, seeding |
+
+### `/packages` - Shared Modules
+| Folder | Contents |
+|--------|----------|
+| `config/` | Configuration settings |
+| `types/` | TypeScript type definitions |
+
+---
+
+## API Documentation
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/api/companies` | Get 3 main companies |
-| `GET` | `/api/plans` | Get subscription plans (₹2,000 / ₹5,000 / ₹10,000) |
-| `GET` | `/api/listings` | Get business listings (supports `?category=` filter) |
-| `GET` | `/api/blog` | Get published blog posts |
+| `GET` | `/api/plans` | Get subscription plans |
+| `GET` | `/api/listings` | Get business listings |
+| `GET` | `/api/listings?category=EdTech` | Filter by category |
+| `GET` | `/api/blog` | Get blog posts |
 | `POST` | `/api/leads` | Submit contact form |
 | `POST` | `/api/newsletter` | Subscribe to newsletter |
 
-### Example API Usage (with Axios)
-
+### Example with Axios
 ```typescript
 import { api } from "@/lib/queryClient";
 
-// GET request
-const { data: companies } = await api.get("/api/companies");
+// GET
+const { data } = await api.get("/api/companies");
 
-// POST request
+// POST
 await api.post("/api/leads", {
-  name: "John Doe",
-  email: "john@example.com",
+  name: "John",
+  email: "john@test.com",
   message: "Hello!"
 });
 ```
 
 ---
 
-## Environment Variables
+## Design Guidelines
 
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `SESSION_SECRET` | Session encryption key |
-| `STRIPE_SECRET_KEY` | Stripe API secret key |
-| `VITE_STRIPE_PUBLIC_KEY` | Stripe publishable key (frontend) |
-
----
-
-## Features
-
-- **Personal Branding** - Showcase 3 companies with logos & descriptions
-- **Business Marketplace** - Partners can list their companies
-- **Subscription Plans** - 3 tiers (Starter, Professional, Enterprise)
-- **Lead Generation** - Contact forms save to database + open Gmail
-- **Newsletter** - Email subscription with duplicate detection
-- **YouTube Integration** - Embedded TagSkills videos
-- **Stripe Payments** - Subscription checkout flow
-- **Responsive Design** - Works on mobile, tablet, desktop
+See [docs/design_guidelines.md](docs/design_guidelines.md) for:
+- Color palette (Navy Blue #0A2342, Gold #F1C40F)
+- Typography (Inter, Poppins)
+- Spacing system
+- Component patterns
 
 ---
 
-## Companies Featured
+## Future Enhancements
 
-1. **TagSkills EdTech** - SAP training & professional development
-2. **Invayas Technologies** - SAP S/4HANA implementations
-3. **Frillory Design House** - Brand identity & UI/UX design
+- [ ] Next.js migration (App Router)
+- [ ] Email service integration (SendGrid/Resend)
+- [ ] Admin dashboard
+- [ ] Blog CMS
+- [ ] Multi-language support
+- [ ] Analytics dashboard
 
 ---
 
@@ -162,14 +264,15 @@ await api.post("/api/leads", {
 | **Email** | Prashunshetty@tagskills.com |
 | **Phone** | +91 8971164999 |
 | **Location** | Bangalore, Karnataka, India |
-| **LinkedIn** | [linkedin.com/in/prashun-shetty-41903a39](https://linkedin.com/in/prashun-shetty-41903a39/) |
+| **LinkedIn** | [prashun-shetty](https://linkedin.com/in/prashun-shetty-41903a39/) |
 | **YouTube** | [@tagskills9749](https://youtube.com/@tagskills9749) |
-| **TagSkills** | [tagskills.com](https://www.tagskills.com) |
-| **Invayas** | [invayas.com](https://www.invayas.com/) |
-| **Frillory** | [frillory.com](https://www.frillory.com/) |
 
 ---
 
 ## License
 
 Private project - All rights reserved.
+
+---
+
+Built with ❤️ by Prashun Shetty
