@@ -1,0 +1,64 @@
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Handshake } from "lucide-react";
+
+interface CompanyCardProps {
+  logo: string;
+  name: string;
+  tagline: string;
+  description: string;
+  website?: string;
+}
+
+export default function CompanyCard({ logo, name, tagline, description, website }: CompanyCardProps) {
+  const handleCollaborate = () => {
+    const email = "Prashunshetty@tagskills.com";
+    const subject = `Collaboration Inquiry - ${name}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+    window.open(gmailUrl, '_blank');
+  };
+
+  return (
+    <Card className="p-6 space-y-6 border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200" data-testid={`card-company-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+      <div className="flex items-start justify-center">
+        <div className="h-16 w-full flex items-center justify-center">
+          <img src={logo} alt={`${name} logo`} className="h-full object-contain" data-testid={`img-logo-${name.toLowerCase().replace(/\s+/g, '-')}`} />
+        </div>
+      </div>
+      
+      <div className="space-y-3 text-center">
+        <div>
+          <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2 tracking-tight" data-testid={`text-name-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+            {name}
+          </h3>
+          <p className="text-sm text-muted-foreground font-medium tracking-wide">{tagline}</p>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 font-normal">
+          {description}
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-3 pt-4">
+        <Button
+          size="lg"
+          className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold shadow-sm hover:shadow-md transition-all rounded-xl"
+          onClick={() => window.open(website, '_blank')}
+          data-testid={`button-visit-${name.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          <ExternalLink className="w-5 h-5 mr-2" />
+          Visit Website
+        </Button>
+        <Button
+          variant="outline"
+          size="lg"
+          className="font-semibold border-2 rounded-xl hover:bg-accent/10 transition-all"
+          onClick={handleCollaborate}
+          data-testid={`button-collaborate-${name.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          <Handshake className="w-5 h-5 mr-2" />
+          Collaborate
+        </Button>
+      </div>
+    </Card>
+  );
+}
