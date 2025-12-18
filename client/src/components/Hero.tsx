@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Award, Users, TrendingUp, Calendar } from "lucide-react";
-import heroImage from "@assets/image_1762091195476.png";
+import heroImage from "@assets/hero-background.png";
 
 export default function Hero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -101,19 +101,19 @@ Thank you!`;
               <p className="text-center text-xs font-bold text-muted-foreground uppercase tracking-widest">Founder of</p>
               <div className="flex items-center justify-center gap-8 flex-wrap">
                 <img 
-                  src="/attached_assets/image_1763310394785.png" 
+                  src="/attached_assets/tagskills-logo.png" 
                   alt="TagSkills EdTech" 
                   className="h-10 object-contain opacity-90 hover:opacity-100 transition-opacity"
                   data-testid="img-founder-tagskills"
                 />
                 <img 
-                  src="/attached_assets/image_1763310692087.png" 
+                  src="/attached_assets/invayas-logo.png" 
                   alt="Invayas Technologies" 
                   className="h-10 object-contain opacity-90 hover:opacity-100 transition-opacity"
                   data-testid="img-founder-invayas"
                 />
                 <img 
-                  src="/attached_assets/image_1763310816169.png" 
+                  src="/attached_assets/frillory-logo.png" 
                   alt="Frillory Design House" 
                   className="h-10 object-contain opacity-90 hover:opacity-100 transition-opacity"
                   data-testid="img-founder-frillory"
@@ -159,7 +159,7 @@ Thank you!`;
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  src="/attached_assets/image_1763310394785.png" 
+                  src="/attached_assets/tagskills-logo.png" 
                   alt="TagSkills EdTech" 
                   className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
@@ -167,7 +167,7 @@ Thank you!`;
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  src="/attached_assets/image_1763310692087.png" 
+                  src="/attached_assets/invayas-logo.png" 
                   alt="Invayas Technologies" 
                   className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
@@ -175,7 +175,7 @@ Thank you!`;
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  src="/attached_assets/image_1763310816169.png" 
+                  src="/attached_assets/frillory-logo.png" 
                   alt="Frillory Design House" 
                   className="h-12 object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
